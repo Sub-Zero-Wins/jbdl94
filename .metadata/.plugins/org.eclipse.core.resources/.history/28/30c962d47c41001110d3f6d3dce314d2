@@ -1,0 +1,13 @@
+package day2;
+
+public class EmployeeMain
+{
+
+	public static void main(String[] args)
+	{
+		Employee emp1 = new Employee(101,"Syed",100);
+		System.out.println(emp1.getId());
+		emp1.setId(1001);
+		
+	}
+}

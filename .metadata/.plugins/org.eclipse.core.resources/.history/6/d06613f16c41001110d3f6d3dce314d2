@@ -1,0 +1,13 @@
+package day2;
+
+class Pen
+{
+	String name;
+	int color;
+}
+
+public class PenMain 
+{
+	
+
+}

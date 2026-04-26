@@ -1,0 +1,21 @@
+package day2;
+
+class Pen
+{
+	String name;
+	int color;
+
+	void write()
+	{
+
+	}
+}
+
+public class PenMain 
+{	
+	public static void main(String[] args)
+	{
+        Pen p = new Pen();
+
+	}
+}

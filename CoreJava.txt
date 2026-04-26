@@ -1,0 +1,293 @@
+IT Rules
+--------
+1. do not write multiple classes in a single source file
+2. Naming conventions
+
+   1. Class/Interface/Constructors
+      
+      PascalCase
+      
+      ScientificCalculator
+
+   2. methods/packages/variables
+    
+       camelCase
+
+
+        rateOfInterest
+
+   3.  Constants
+      
+
+       ACC_DUE_TO_GRAVITY
+
+       PI
+----------------------------
+    
+ Data Types
+
+ primitive:
+
+   byte    : 128
+    short  
+     int 
+      long
+    float
+     double
+      Boolean true false
+  char 
+
+ non primitive
+
+Wrapper
+  Byte
+  Short
+  Integer
+  Long
+  Float
+  Double
+  Character
+  
+
+String.
+
+
+--------------------
+
+
+Operators.
+	
+Loops
+ for while do while
+
+
+conditional statements.
+   if else elseif
+   switch
+   
+-----------------------
+
+Functional Programming.
+--------------------------
+
+
+         void nonstaticMethod()
+	 {
+		 System.out.println("non static Method");
+		//static int x = 100; // syntax error
+	 }
+
+        void nonstaticMethod(int x)
+	 {
+		 System.out.println("non static Method");
+		//static int x = 100; // syntax error\
+              
+	 }
+
+         int square(int x)
+	 {
+	    return 10;
+	 }
+ 
+        Employee square(Employee e)
+	 {
+	    return e;
+	 }
+
+  	Employee[] square(Employee[] e)
+	 {
+	    return e;
+	 }
+
+
+
+
+
+
+----------------------------------------------------------
+
+In java class what all things can be written.
+
+1. declare and initialize static and non static variables
+
+2. declare and define static and non static methods
+
+3. constructors
+
+4. static and non static block
+
+
+-------------------------------------------------------------
+
+
+
+OOP
+---
+Its a programming paradigm  in which we replicate all the realworld entites in our program as objects in order to solve a problem.
+
+Object
+------
+an entity which has its own states and behaviour (has(properties) and does(functionality)).
+instance of a class.
+
+Class
+-----
+a java definition block that defines the states and behaviour of an object.
+blue print of an object 
+
+class Pen
+{
+   String color;
+   int price;
+
+    void write()
+   {
+   }
+}
+
+Pen pen = new Pen();  
+
+int x = 10
+
+---------------------------------------------------
+
+2 ways to initialize objects.
+-------------------------------
+
+1. Contsructor.
+   is special type of method which has same name as that of the class name.
+   it has no return type
+   executes when the class is instantiated.
+   constructors cannot be static/non static
+   constructors cannot have modifiers like strictfp,static,final 
+   if no constr written by the programmer compiler introduces a no arg default constr.
+   if user writes a constr there will be no default constr.
+
+
+this kw refers to the current objet
+
+
+2. non static blocks.
+
+   rarely used
+   executes before constr.
+
+
+Execution of a java program
+----------------------------
+
+
+1. class loading.
+2. all the static members are loaded into the memory(meta space).
+3. execute static block
+4. start main method
+   (can start accessing static members)
+optional.
+  (object creation in the heap memory all non static elements are loaded)
+
+5. non static block per object
+6. constructor executes per object
+7. non static members are readily accessible
+
+
+
+when to go for static and when to go for non static.?
+
+
+
+Java Pillars of OOPS
+----
+
+1. Inheritance
+ acquiring props of one class to another class .
+
+ Parent  Super  Base
+ Child   Sub    Derived
+
+
+Types of inheritance.
+
+ single level
+ multi level
+ hierarchial
+ hybrid.
+
+ 
+Imp conclusions.
+----------------
+1. private members,constr,blocks do not participate in inheritance
+
+2. every class in java is a subclass of object class and compiler adds 
+
+3.
+//import java.lang.*
+ public class Demo2 // extends Object
+{
+	// 11 methods of object class
+	
+	// default Const
+	
+	// public Demo2()
+	//{
+    //   super();
+	//}
+	public static void main(String[] args) 
+	{
+		new Child();
+		
+	}
+
+}
+
+4. super kw calls parent class constr to complete constr chaining.
+
+
+
+2. Encapsulation
+-----------------------------------
+binding data members with member functions.
+
+
+
+
+
+
+
+
+3. Polymorphism
+------------------------------------
+
+
+4. Abstraction.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

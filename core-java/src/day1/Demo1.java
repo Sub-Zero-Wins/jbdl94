@@ -1,0 +1,14 @@
+package day1;
+
+public class Demo1
+{
+	static public void main(String... args) // entry point of execution
+	{
+	   System.out.println("Hello World");	
+	}
+	
+	void nameOfMethod()
+	{
+		
+	}
+}
