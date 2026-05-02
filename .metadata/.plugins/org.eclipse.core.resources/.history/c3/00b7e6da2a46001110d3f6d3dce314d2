@@ -1,0 +1,29 @@
+package day3;
+
+
+interface Itr1
+{
+	double PI = 4.14;
+	void add();
+}
+
+class B 
+{ 
+	 void add()
+	 {
+		 
+	 }
+}
+class A implements Itr1
+{
+
+	@Override
+	 void add() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+public class Demo2 {
+
+}

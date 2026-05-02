@@ -1,0 +1,13 @@
+package day3;
+
+import java.io.FileReader;
+
+import day2.Employee;
+
+public class ExpDemo2 {
+
+	public static void main(String[] args) {
+		throw new RuntimeExecption("message");
+		
+	}
+}

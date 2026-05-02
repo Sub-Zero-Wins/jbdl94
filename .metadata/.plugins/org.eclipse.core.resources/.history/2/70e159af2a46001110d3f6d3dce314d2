@@ -1,0 +1,14 @@
+package day3;
+
+
+interface Itr1
+{
+	void add();
+}
+class A
+{
+	
+}
+public class Demo2 {
+
+}

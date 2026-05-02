@@ -1,0 +1,14 @@
+package day2;
+
+import day3.AccessMods;
+
+public class AccessMain extends AccessMods
+{
+	public static void main(String[] args) 
+	{
+		AccessMods a = new AccessMods();
+		a.m1();
+		
+	}
+
+}

@@ -248,17 +248,314 @@ Imp conclusions.
 binding data members with member functions.
 
 
-
-
-
-
-
-
 3. Polymorphism
 ------------------------------------
 
+Poly Morph
+many forms
+
+ Polymorphism: the ability of an object to exhibit multiple forms at different stages.
+
+2 types.
+
+1. Compile/static time polymorphism
+    the binding or method declaration to method definition happens during compilation time.
+   example method overloading.
+  
+ method overloading 
+----------------------
+ writing multiple methods with same name and different signatures.
+
+  signature = 1. types of parameters
+              2. Order of parameters
+              3. length of params
+
+public void add(double a, int x)
+{
+
+}
+public void add(int x, int y)
+{
+
+}
+public void add(int x , int y ,int z)
+{
+
+}
+
+constructor overloading.
+
+hw.
+
+data type casting and ambiguity problem in overloading.
+	
+          
+    
+
+2. Runtime/dynamic Polymorphism.
+-----------------------------------------
+  the binding or method declaration to method definition happens during run time.
+   example method overriding.
+
+Overriding:
+changing parent class implementation of a method in child class.	
+
+  
+Rules of overriding
+-------------------
+
+1. name and signature must be preserved
+
+2. wrt access modifier
+
+   the visibility of the method can be kept same or can be increased but cannot be decreased.
+
+      public > protected > default > private 
+
+Parent :    public                              protected                     default                         private 
+
+
+
+
+
+
+Child  :     public				protected, public            default,protected , public         no inheritance hence no overriding.
+
+
+
+not alloed   protected > default > private     private default               private
+
+
+
+
+public = can access anywhere by just importing.
+
+protected= protected is same default + you can access protected members outside package by inheriting the class
+
+default = default aka package level access modifier, i.e members can be accessed only withing the package they are declared in.
+
+private =  private members are accessible only within the class they are declared in.
+ 
+
+3.  wrt return type.
+
+cannot change return type for primitive return data type.
+
+void int double
+
+
+for non primitive covariant types can be changes but not contra variant.
+
+4. what all methods do not get overridden.
+
+  private cannot be overridden (reason) private are not inherited
+
+  static cannot be overridden  (reason) overriding is applicable for object level method they exhibit method hiding.
+
+  final cannot be overridden   as the impl declared final.
+
+       final - variable = cannot be re assigned.
+       final - method   = cannot be overriden
+       final - class  = cannot have a subclass (cannot be inherited)
+
+5.  abstract can be overridden as concrete and concrete to abstract.
+
+  
+
+
+   upcasting and downcasting.
+  ----------------------------
+
+  upcasting parent ref pointing to child object. loose coupling
+
+   Parent ref = ChildObjet
+
+ parent type ref can access inherited and overridden methods
+
+ to access speacialized methods of a  class we need to downcasted the upcasted object.
+	
+
+
+3 categogy of methds
+
+1. inherited.
+2. overridden.
+3. speciaized
+
 
 4. Abstraction.
+------------------
+
+
+
+methods
+-------
+
+
+1. concrete method.
+
+public void m1()
+{
+   SOP("hello World")
+}
+
+2. empty impl method.
+
+public void m1()
+{
+}
+
+3. abstract method.
+
+abstract public void m1();
+
+classes.
+----------
+
+
+class with all concrete methods = concrete class
+
+class with 99 concrete + 1 abstract = abstract class
+
+
+abstract classes cannot be instantiated. (no object creation.)
+
+
+--------------------------------------------------------------------
+
+abstraction is the concept of focusing on what an object does rather than how.
+
+extraction the essential characteristics of an entity while hiding the unnecessary details.
+
+Pure abstraction
+-------------------
+
+interfaces.
+-----------
+
+an interface is a purely abstract body.
+
+by default all methods in an interface are public and abstract
+
+and all data is public static and final.
+
+implements keyword is used by a class to implement the interface.
+
+one interface can be implemented by many classes
+
+interfaces can perform inheritance including multiple inheritance
+
+a class can inherit another class and implement multiple interfaces at time
+
+
+class A extends B implements Itr1,Itr2,It3  correct
+
+class A  implements Itr1,Itr2,It3 extends B  wrong
+
+
+empty interface is called as marker interface
+
+an interface with single abstract method is called as Functional Interface
+
+
+
+--------------------------------------------------------------------------
+
+
+Exceptions
+
+try
+catch
+finally
+
+throw
+------
+used to throw any execption manually
+
+generally used for userdefined/CUSTOM execption
+
+only classes that have properties of Throwable can be thrown
+
+
+----------------------------------------------------------------------
+checked                             and                        unchecked
+----------------------
+hinted by compiler                              not hinted by compiler    during compilation time also occur in runtime
+but occur during runtime 
+during compilation time
+
+
+using throw we can throw both checked and unchecked 
+
+
+Automatic exception Propogation is applicable only for unchecked execptions.
+
+
+throws.
+-------
+throws kw is used to inform the caller of a method about its unchecked execptions.
+
+
+
+throw vs throws.
+------------------
+
+
+CustomException
+----------------
+
+
+create a custom unchecked exception InsufficientBalanceException and throw it when customer is trying to withdraw money more than his balance.
+
+
+
+
+create a custom checked exception IneligibleForMarriageException and throw it when customers below 18/21 is trying to get married on your matrimonial site.
+
+
+
+valid and invalid syntaxes in try catch finally
+--------------------------------------------------
+
+
+try{
+
+}
+
+try{
+
+}
+sop()
+catch()
+
+
+try{
+
+}
+finaly
+{
+}
+
+
+try with resources
+--------------------
+
+multicatch block
+-------------------
+
+
+execption chaining.
+--------------------
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,29 @@
+package day3;
+
+public class ExpPropogationDemo3 
+{
+	public static void main(String[] args)
+	{
+		System.out.println("main start");
+		m1();
+		System.out.println("main end");
+
+	}
+
+	private static void m1() {
+
+		System.out.println("m1 start");
+		m2();
+		System.out.println("m1 end");
+
+	}
+
+	private static void m2() {
+		System.out.println("m2 start");
+		System.out.println(10/0);
+		System.out.println("m2 end");
+
+	}
+
+
+}

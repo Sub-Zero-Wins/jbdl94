@@ -48,6 +48,9 @@ public class PenMain
       System.out.println(p2.color);
       System.out.println(p2.price);
       System.out.println(p2.name);
+      
+      
+      
 
 	}
 }

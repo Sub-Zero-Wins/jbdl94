@@ -1,0 +1,22 @@
+package day3;
+
+public class PassengerPlane implements Plane 
+{
+	@Override
+	public void fly()
+	{
+		System.out.println("fly at high altitude");
+	}
+	
+	public void carry()
+	{
+		System.out.println("people");
+	}
+
+	@Override
+	public void takeOff() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

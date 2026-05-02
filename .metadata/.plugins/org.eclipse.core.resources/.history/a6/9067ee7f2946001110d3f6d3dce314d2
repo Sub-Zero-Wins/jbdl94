@@ -1,0 +1,18 @@
+package day3;
+
+abstract public class Plane
+{
+	abstract public void fly();
+	abstract public void takeOff();
+	
+	public void land()
+	{
+		System.out.println();
+	}
+	
+	Plane()
+	{
+		
+	}
+
+}

@@ -1,0 +1,37 @@
+package day3;
+
+class A
+{
+	
+}
+class B extends A
+{
+	
+}
+class Parent
+{
+	public A marry()
+	{
+	  System.out.println("Chandra Mukhi");
+	return null;
+	}	
+}
+class Child extends Parent
+{
+	@Override
+	public  marry()
+	{
+	  System.out.println("Manjaulika");
+	return null;
+	}	
+	
+}
+
+public class MethodOverriding 
+{
+	public static void main(String[] args) 
+	{
+		new Child().marry();
+	}
+
+}

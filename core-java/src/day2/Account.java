@@ -1,6 +1,6 @@
 package day2;
 
-public class Account 
+public abstract class Account 
 {
 	int accNum;
 
@@ -25,5 +25,9 @@ class SavingsAccount extends Account
 
 class CurrentAccount  extends Account
 {
+	public CurrentAccount(int accNum) {
+		super(accNum);
+	}
+
 	double transFee;
 }
