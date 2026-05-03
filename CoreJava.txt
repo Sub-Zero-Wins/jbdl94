@@ -646,6 +646,9 @@ double ended queue
 
 Maps
 ----
+when we want to represent a group of individual objects represented as a single entity in key value pairs.
+
+
 
 
 HashMap
@@ -656,7 +659,12 @@ TreeMap
 
 
 
-when we want to represent a group of individual objects represented as a single entity in key value pairs.
+Iteration 
+
+Iterator(Universal Cursor)
+ListIterator
+DescendingItertor
+For Each
 
 
 
