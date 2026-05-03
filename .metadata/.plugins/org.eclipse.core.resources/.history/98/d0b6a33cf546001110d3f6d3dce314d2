@@ -1,0 +1,36 @@
+package day4;
+
+class Data
+{
+	int x;
+
+	public Data(int x) {
+		super();
+		this.x = x;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	@Override
+	public String toString() {
+		return "Data [x=" + x + "]";
+	}
+	
+	
+}
+
+public class GenericDemo 
+{
+	public static void main(String[] args) 
+	{
+		Data data = new Data(10);
+		
+	}
+
+}

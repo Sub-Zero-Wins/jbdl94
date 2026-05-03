@@ -1,0 +1,24 @@
+package day4;
+
+import java.util.ArrayDeque;
+import java.util.PriorityQueue;
+
+public class QueueDemo 
+{
+	public static void main(String[] args) 
+	{
+		ArrayDeque ad = new ArrayDeque();
+		
+		ad.add(10);
+		ad.add(20);
+		ad.add(40);
+		ad.add(50);
+		ad.add(60);
+		ad.add(90);
+		
+		System.out.println(ad);
+		
+		PriorityQueue pq;
+	}
+
+}

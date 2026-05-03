@@ -34,7 +34,7 @@ IT Rules
       long
     float
      double
-      Boolean true false
+      boolean true false
   char 
 
  non primitive
@@ -47,6 +47,7 @@ Wrapper
   Float
   Double
   Character
+  Boolean
   
 
 String.
@@ -546,8 +547,116 @@ multicatch block
 
 execption chaining.
 --------------------
+-----------------------------------------------------------------------------------------
+boxing unboxing
+
+wrapping and unwrapping
+
+------------------------
+
+Wrapper Classes
+----------------
 
 
+
+
+
+Collections
+-------------
+a group of individual objects represented as a single entity.
+----------------------------------------------------------------
+
+Drawbacks of arrays
+--------------------
+1. fixed in size.
+2. Homogenous data only
+3. demand contiguous memory
+
+
+LIST
+----
+when we want to represent a group of individual objects represented as a single entity where duplicates are allowed and insertion order is preserved.
+
+
+ArrayList
+---------
+-> internal data strcture dynamic array.
+-> heterogenous
+-> slower in performance if data keeps only expanding above planned capacity due to copy overhead
+-> faster in data reading
+
+
+
+LinkedList
+----------
+-> doubly linked list
+
+ArrayList LinedList
+-------------------
+
+Vector
+------
+internal data strcture dynamic array.
+Synchronized
+
+
+
+Stack
+-----
+LIFO
+
+	
+
+
+SET
+---
+when we want to represent a group of individual objects represented as a single entity where duplicates are not allowed and insertion order is not preserved.
+
+HashSet
+---------
+built on hashmap
+
+
+
+
+
+LinkedHashSet
+
+Linked List + HashMap 
+
+TreeSet
+
+Red Black/ Binary Tree
+Only Homogenous and Comparable elements
+
+
+QUEUE
+------
+when we want to represent a group of individual objects represented as a single entity according to some priority order.
+
+PriorityQueue
+Min Heap
+
+
+
+ArrayDeque
+double ended queue
+
+
+
+Maps
+----
+
+
+HashMap
+
+LinkedHashMap
+
+TreeMap
+
+
+
+when we want to represent a group of individual objects represented as a single entity in key value pairs.
 
 
 

@@ -1,0 +1,16 @@
+package day4;
+
+import java.util.HashMap;
+
+public class MapsDemo 
+{
+	public static void main(String[] args) {
+		HashMap<Integer,String> hm = new HashMap();
+		hm.put(0, "Syed");
+		hm.put(1, "Syed");
+		hm.put(2, "Syed");
+		hm.put(3, "Syed");
+		hm.put(4, "Syed");
+	}
+
+}

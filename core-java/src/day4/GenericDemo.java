@@ -1,0 +1,41 @@
+package day4;
+
+class Data <T>
+{
+	private  T x;
+
+	public Data(T x) {
+		super();
+		this.x = x;
+	}
+
+	public T getX() {
+		return x;
+	}
+
+	public void setX(T x) {
+		this.x = x;
+	}
+
+	@Override
+	public String toString() {
+		return "Data [x=" + x + "]";
+	}
+}
+
+public class GenericDemo 
+{
+	public static void main(String[] args) 
+	{
+		Data data = new Data(10);
+		System.out.println(data.getX());
+		
+		Data data2 = new Data(10.9);
+		System.out.println(data2.getX());
+		
+		Data data3 = new Data("Syed");
+		System.out.println(data3.getX());
+		
+	}
+
+}

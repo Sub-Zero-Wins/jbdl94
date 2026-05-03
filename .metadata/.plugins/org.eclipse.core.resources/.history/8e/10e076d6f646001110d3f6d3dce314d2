@@ -1,0 +1,13 @@
+package day4;
+
+import java.util.ArrayDeque;
+
+public class QueueDemo 
+{
+	public static void main(String[] args) 
+	{
+		ArrayDeque ad;
+		
+	}
+
+}

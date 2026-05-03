@@ -1,0 +1,32 @@
+package day4;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+public class MapsDemo 
+{
+	public static void main(String[] args) {
+		HashMap<Integer,String> hm = new HashMap<Integer,String>();
+
+		hm.put(10, "Syed");
+		hm.put(12, "Saqib");
+		hm.put(22, "Rahul");
+		hm.put(33, "Dev");
+		hm.put(44, "Neha");
+
+		System.out.println(hm);
+
+		LinkedHashMap<Integer,String> lhm = new LinkedHashMap<Integer,String>();
+
+		lhm.put(10, "Syed");
+		lhm.put(12, "Saqib");
+		lhm.put(22, "Rahul");
+		lhm.put(33, "Dev");
+		lhm.put(44, "Neha");
+
+		System.out.println(lhm);
+
+
+	}
+
+}

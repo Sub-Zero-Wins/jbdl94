@@ -1,0 +1,58 @@
+package day4;
+
+class Data
+{
+	private  int x;
+	
+	private double y;
+	
+	
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public Data(double y) {
+		super();
+		this.y = y;
+	}
+
+	public Data(int x) {
+		super();
+		this.x = x;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	@Override
+	public String toString() {
+		return "Data [x=" + x + "]";
+	}
+}
+
+public class GenericDemo 
+{
+	public static void main(String[] args) 
+	{
+		Data data = new Data(10);
+		System.out.println(data.getX());
+		
+		Data data2 = new Data(10.9);
+		System.out.println(data2.getX());
+		
+		Data data3 = new Data("Syed");
+		System.out.println(data3.getX());
+		
+	}
+
+}
