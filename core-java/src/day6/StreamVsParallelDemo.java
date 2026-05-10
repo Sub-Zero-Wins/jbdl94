@@ -1,0 +1,39 @@
+package day6;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.LongStream;
+
+public class StreamVsParallelDemo {
+
+    public static void main(String[] args) {
+        // Create a large dataset
+        List<Long> data = new ArrayList<>();
+        for (long i = 0; i < 5000000; i++) {
+            data.add((i % 20) + 1); // Factorials of 1-20
+        }
+
+        System.out.println("Processing " + data.size() + " elements...\n");
+
+        // --- Sequential Stream ---
+        long start = System.currentTimeMillis();
+        data.stream().map(StreamVsParallelDemo::factorial).reduce(0L, Long::sum);
+        long end = System.currentTimeMillis();
+        System.out.println("Sequential Stream Time: " + (end - start) + " ms");
+
+        // --- Parallel Stream ---
+        start = System.currentTimeMillis();
+        data.parallelStream().map(StreamVsParallelDemo::factorial).reduce(0L, Long::sum);
+        end = System.currentTimeMillis();
+        System.out.println("Parallel Stream Time:   " + (end - start) + " ms");
+    }
+
+    // A computational-intensive task
+    private static long factorial(long n) {
+        long result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}

@@ -1,0 +1,19 @@
+package day5;
+
+import java.util.function.Function;
+
+public class FunctionDemo {
+	public static void main(String[] args) 
+	{
+		Function<Integer,Integer> doubleIt = i-> i+i;
+		Function<Integer,Integer> squareIt = i-> i*i;
+		
+		System.out.println(doubleIt.apply(2));
+		System.out.println(squareIt.apply(3));
+		
+		System.out.println(doubleIt.andThen(squareIt).apply(2));// 2+2 4*4
+
+		System.out.println(squareIt.andThen(doubleIt).apply(2)); //2*2 4+4
+
+	}
+}

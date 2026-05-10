@@ -1,0 +1,23 @@
+package day5;
+
+@FunctionalInterface
+interface Calc
+{
+	int square(int x);
+}
+
+class CalcImpl implements Calc
+{
+
+	@Override
+	public int square(int x) {
+		
+		return x*x;
+	}
+	
+}
+
+
+public class LambdaDemo {
+
+}

@@ -1,0 +1,23 @@
+package day5;
+
+interface Itr3
+{
+	B m1();
+}
+
+class B
+{
+	B()
+	{
+		
+	}
+}
+public class ConstrRef
+{
+	public static void main(String[] args)
+	{
+		Itr3 i3 = new::B;
+		
+	}
+
+}

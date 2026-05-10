@@ -1,0 +1,31 @@
+package day5;
+
+interface Itr3
+{
+	
+	B m1(int x); // factory methods
+}
+
+class B
+{
+	B()
+	{
+		System.out.println("no args constr");
+	}
+	B(int x)
+	{
+		System.out.println("int args");
+	}
+	
+	
+}
+public class ConstrRef
+{
+	public static void main(String[] args)
+	{
+		Itr3 i3 = B::new;
+		i3.m1(10);
+		
+	}
+
+}

@@ -1,0 +1,19 @@
+package day5;
+
+interface Itr
+{
+	void add(int a,int b);
+}
+
+class A
+{
+	public void sum(int x, int y)
+	{
+		return x+y
+	}
+}
+
+public class MethodRef
+{
+
+}

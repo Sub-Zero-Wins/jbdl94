@@ -1,0 +1,12 @@
+package day5;
+
+public interface Itr2 {
+
+	public static void main(String[] args) {
+		System.out.println("hellow world");
+		
+		Math.sqrt(100);
+	}
+	
+	
+}

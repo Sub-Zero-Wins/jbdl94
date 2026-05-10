@@ -1,0 +1,33 @@
+package day6;
+
+public class MTDemo1 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+
+		System.out.println("video streaming..... start");
+		for (int i = 0; i < 10; i++)
+		{
+           Thread.sleep(1000);
+		}
+		System.out.println("video streaming..... end");
+		
+		System.out.println("commenting.... start");
+		for (int i = 95; i < 105; i++)
+		{
+           Thread.sleep(1000);
+           System.out.println((char)i);
+		}
+		System.out.println("commenting..... end");
+		
+		System.out.println("downloading.... start");
+		for (int i = 10; i <=100; i=i+10)
+		{
+           Thread.sleep(1000);
+           System.out.println("downloading -"+i+" %");
+		}
+		System.out.println("downloading..... end");
+
+	}
+
+}

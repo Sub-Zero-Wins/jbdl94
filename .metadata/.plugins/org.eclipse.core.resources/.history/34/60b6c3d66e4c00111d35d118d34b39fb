@@ -1,0 +1,22 @@
+package day6;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class CustomerMain 
+{
+	public static void main(String[] args) 
+	{
+		Customer customer =getCustomerByEmail("saqib@gmail.com");
+		
+	}
+	
+	public static Customer getCustomerByEmail(String email)
+	{
+		List<Customer> allCustomers=EkartDatabase.getAllCustomers();
+		
+		return allCustomers.stream().filter(mail->mail.equals(email)).collect(Collectors.toList());
+		
+	}
+
+}

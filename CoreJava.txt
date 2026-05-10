@@ -667,6 +667,216 @@ DescendingItertor
 For Each
 
 
+-----------------------------------
+
+
+Inner classes
+--------------
+static non static inner classes.
+
+
+more to Generics
+-----------------
+
+? extends , wild cards
+bounded type params
+upper multiple
+type erasure
+
+
+Internal Working of HashMap
+----------------------------
+
+hashing collision
+8- List
+8- Tree
+----------------------------------
+
+Java 8
+-------
+
+
+1. Functional Interface
+----------------------------
+
+SAM-Single Abstract Method
+
+DEFAULT
+PRIVATE
+STATIC
+
+
+
+
+2.  lambda expressions.
+
+
+
+LISP programming lang.
+
+Lambda -> used to express complex expression in simple way .
+
+OOP->
+
+-----------------------------------------------------------------
+lambda expressions
+-------------------
+
+is an anonymous function.
+
+   -> no name
+   -> no return type
+   -> no modifier
+
+
+
+1. public void m1()
+{
+  SOP("Hello World");
+}
+
+
+
+()->{SOP("Hello World");};
+
+()->SOP("Hello World");
+
+
+
+2. no need of data type, only for single parameter bracket can be omitted
+
+
+ public void square(int x)
+{
+  SOP(x*x);
+}
+
+
+(int x)->SOP(x*x);
+
+(x)->SOP(x*x);
+
+ x -> SOP(x*x); // only for single parameter
+
+
+3. return and {} either come to together or leave together
+
+
+
+ public int square(int x)
+{
+ return x*x
+}
+
+
+x-> {return x*x;};
+
+x-> x*x;   // return and {} either come to together or leave together
+
+
+
+4. 
+
+ public int add(int a,int b)
+{
+ return a+b;
+}
+
+
+
+(a, b)->{return a+b;};
+
+(a, b)-> a+b;
+
+
+s-> s.length() ;
+
+
+
+
+
+valid vs invalid
+
+
+
+(a, b)->{return a+b;};   // valid
+
+
+a, b->{return a+b;}; // invalid
+
+
+(a, b)->return a+b;; // not valid
+
+
+(a, b)->{return a+b;}; // invalid
+
+
+(a)->{a*a;}; // invalid
+
+ a->{a*a;} // invalid
+
+a->a*a;
+
+----------------------------------------------------------------
+
+
+1. can be only used for functional interface
+
+2. no additional .class file like anonymous innerclass
+
+3. no additional performace overhead all mapping is done during compiltion
+
+
+
+Inbuilt Functional Interface
+-----------------------------
+java.util.Function
+
+Predicate -  boolean test(T t);
+Function  -  R apply(T t);
+Consumer  -  void accept(T t)  
+Supplier  -  R get();
+
+
+Math.random()= 0.0 to 0.9999
+
+-------------------------------------------------------------------
+
+
+Optional
+
+:: 
+
+
+structural
+behavioural
+functional
+
+------------------------------------------------------------
+
+Stream API
+-----------
+
+1. Streams cannot be reused.
+2. intermediary methods (lazy executed) and terminary method
+3. 
+
+
+System.out.print()
+
+
+Stream.of()
+
+->
+
+parallel stream
+----------------
+
+---------------------------------------------------------
+
+
+Mu
+
 
 
 

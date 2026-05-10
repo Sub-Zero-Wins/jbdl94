@@ -1,0 +1,16 @@
+package day5;
+
+import java.util.Optional;
+
+public class OptionalDemo
+{
+	public static void main(String[] args) 
+	{
+		String email  = "syedsaqib@gmail.com";
+	     Optional emailOp =Optional.of(email);
+	     
+	     System.out.println();
+	  
+	}
+
+}

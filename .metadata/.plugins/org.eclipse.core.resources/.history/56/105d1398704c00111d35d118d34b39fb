@@ -1,0 +1,44 @@
+package day6;
+
+public class CustomerMain 
+{
+	public static void main(String[] args) 
+	{
+//		Customer customer;
+//		try {
+//			customer = getCustomerByEmail("saqi@gmail.com");
+//			System.out.println(customer);
+//		} catch (CustomerNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	
+		emailChanger();
+		
+	}
+	
+	public static Customer getCustomerByEmail(String email) throws CustomerNotFoundException
+	{
+		
+		return EkartDatabase.getAllCustomers()
+				.stream().filter(c->c.getCustEmail().equals(email)).
+				     findFirst().orElseThrow(()->new CustomerNotFoundException("cust not found with given email"));
+		
+	}
+	
+	public static void emailChanger()
+	{
+		//EkartDatabase.getAllCustomers()
+		   //       .stream().map(x -> { String[] st = x.split("@"); StringBuilder sb = new StringBuilder();sb.append(st[0]); sb.append("@yahoo.com"); return sb.toString(); }) .forEach(System.out::println);
+		
+		//EkartDatabase.getAllCustomers().stream().map(x -> x.getEmailId().replace("gmail.com", "yahoo.com")).forEach(System.out::println);
+		
+		
+		//EkartDatabase.getAllCustomers().stream() .map(x -> { String[] st = x.getCustEmail().split("@"); StringBuilder sb = new StringBuilder(); sb.append(st[0]); sb.append("@yahoo.com"); return sb.toString(); }) .forEach(System.out::println);
+		
+		EkartDatabase.getAllCustomers().stream().forEach(customer -> customer.setEmailId(customer.getEmailId().replace("gmail.com", "yahoo.com") ) );
+	}
+	
+	
+
+}

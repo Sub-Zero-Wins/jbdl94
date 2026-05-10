@@ -1,0 +1,24 @@
+package day5;
+
+import java.util.Optional;
+
+public class OptionalDemo
+{
+	public static void main(String[] args) 
+	{
+		String email  = "syed";
+	     Optional emailOp =Optional.ofNullable(email);
+	     
+	     System.out.println(emailOp);
+	     try {
+			emailOp.orElseThrow(()-> new Exception("invalid email or emopty"));
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	     
+	  
+	}
+
+}

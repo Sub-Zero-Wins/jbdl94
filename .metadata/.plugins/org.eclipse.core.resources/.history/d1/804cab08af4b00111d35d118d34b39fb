@@ -1,0 +1,16 @@
+package day5;
+
+interface Itr
+{
+	void add(int a,int b);
+}
+
+class A
+{
+	public void 
+}
+
+public class MethodRef
+{
+
+}

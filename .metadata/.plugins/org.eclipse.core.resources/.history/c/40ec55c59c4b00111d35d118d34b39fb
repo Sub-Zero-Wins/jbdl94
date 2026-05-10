@@ -1,0 +1,15 @@
+package day5;
+
+@FunctionalInterface
+interface Demo1
+{
+	void m1();
+	
+}
+
+
+public class FunctionalInterfaces 
+{
+	
+
+}

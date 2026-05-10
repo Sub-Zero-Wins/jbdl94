@@ -1,0 +1,31 @@
+package day5;
+
+import java.util.function.Predicate;
+
+public class PredicateDemo 
+{
+	public static void main(String[] args)
+	{
+		Predicate<Integer> oddEven = i -> i%2==0;
+		Predicate<Integer> greaterThan2 = i -> i>2;
+		
+		System.out.println(oddEven.test(100));
+		System.out.println(oddEven.test(101));
+		
+		Predicate<String> lenValidate = s -> s.length()>=3;
+		
+		String name = "Syed";
+		
+		if(oddEven.or(greaterThan2).test(name.length()))
+		{
+			System.out.println("valid name");
+			
+		}
+		else
+		{
+			System.out.println("invalid name");
+		}
+		
+	}
+
+}
