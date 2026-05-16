@@ -1,0 +1,53 @@
+package day7;
+
+class AutoSave extends Thread
+{
+	public void run()
+	{
+		for(;;)
+		{
+			System.out.println("Auto saving...");
+		}
+	}
+}
+
+
+class AutoCorrect  extends Thread
+{
+	public void run()
+	{
+		for(;;)
+		{
+			System.out.println("Auto correcting...");
+		}
+	}
+}
+
+class Type  extends Thread
+{
+	public void run()
+	{
+		for(int i=0;i<10;i++)
+		{
+			System.out.println("typing..."); 
+		}
+	}
+}
+
+public class DaemonThreads 
+{
+	public static void main(String[] args) 
+	{
+		Type t1 = new Type();
+		AutoCorrect t2= new AutoCorrect();
+		AutoSave t3 = new AutoSave();
+		
+		t2.setDaemon(true);
+		t3.setDaemon(true);
+		
+		t2.setPriority(1);
+		t2.setPriority(1);
+
+	}
+
+}

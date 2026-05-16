@@ -1,0 +1,74 @@
+package day6;
+
+class VideoStreaming extends Thread
+{
+	public void run()
+	{
+		System.out.println("video streaming..... start");
+		for (int i = 0; i < 10; i++)
+		{
+           try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+           System.out.println("video streaming.....");
+		}
+		System.out.println("video streaming..... end");
+	}
+}
+
+class Commenting extends Thread
+{
+	public void run()
+	{
+		System.out.println("commenting.... start");
+		for (int i = 95; i < 105; i++)
+		{
+           try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+           System.out.println((char)i);
+		}
+		System.out.println("commenting..... end");
+	}
+}
+
+class Downloading extends Thread
+{
+	public void run()
+	{
+		System.out.println("downloading.... start");
+		for (int i = 10; i <=100; i=i+10)
+		{
+           try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+           System.out.println("downloading... -"+i+" %");
+		}
+		System.out.println("downloading..... end");
+	}
+}
+
+public class MTDemo1 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+
+		VideoStreaming vs = new VideoStreaming();
+		Commenting c = new Commenting();
+		Downloading d = new Downloading();
+		
+		vs.start();
+		c.start();
+		d.start();
+	}
+
+}

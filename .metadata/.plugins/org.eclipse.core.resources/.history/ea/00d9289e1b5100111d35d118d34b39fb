@@ -1,0 +1,42 @@
+package multiThreading;
+
+import java.util.concurrent.Callable;
+
+/**
+ * This class demonstrates a Callable task that calculates the square of a given number.
+ * Callable is a functional interface in Java that can return a result and throw exceptions.
+ */
+public class MyCallableTask implements Callable<Integer> {
+
+    // The number whose square will be calculated
+    private int number;
+
+    /**
+     * Constructor to initialize the number for the task.
+     *
+     * @param number the number to calculate the square of
+     */
+    public MyCallableTask(int number) {
+        this.number = number;
+    }
+
+    /**
+     * The main logic of the Callable task.
+     * This method will be executed when the task is submitted to an ExecutorService.
+     *
+     * @return the square of the number
+     * @throws Exception if any error occurs during execution
+     */
+    @Override
+    public Integer call() throws Exception {
+        // Calculate the square of the number
+        int result = number * number;
+        Thread.sleep(5000);
+
+        // Print a message indicating the calculation
+        System.out.println("Calculating square of " + number + ": " + result);
+
+        // Return the result
+        return result;
+    }
+}

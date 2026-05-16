@@ -1,0 +1,39 @@
+package day7;
+
+class AutoSave extends Thread
+{
+ public void run()
+ {
+	 for(;;)
+	 {
+		 System.out.println("Auto saving...");
+	 }
+ }
+}
+
+
+class AutoCorrect  extends Thread
+{
+	 public void run()
+	 {
+		 for(;;)
+		 {
+			 
+		 }
+	 }
+}
+
+class Type  extends Thread
+{
+	 public void run()
+	 {
+		 for(;;)
+		 {
+			 
+		 }
+	 }
+}
+
+public class DaemonThreads {
+
+}

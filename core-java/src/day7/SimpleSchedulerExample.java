@@ -1,0 +1,51 @@
+package day7;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class SimpleSchedulerExample {
+
+    public static void main(String[] args) {
+        // Create a scheduled thread pool with 1 thread
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        // Schedule a task to run after a 2-second delay
+ //       scheduler.schedule(new Task("Delayed Task"), 5, TimeUnit.SECONDS);
+
+        // Schedule a task to run every 3 seconds after an initial delay of 1 second
+         scheduler.scheduleAtFixedRate(new Task("Periodic Task"), 1, 2, TimeUnit.SECONDS);
+
+//        // Stop the scheduler after 10 seconds
+         scheduler.schedule(new TaskStopper(scheduler), 10, TimeUnit.SECONDS);
+    }
+}
+
+// A simple task that prints a message
+class Task implements Runnable {
+    private String message;
+
+    public Task(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(message);
+    }
+}
+
+// A task to stop the scheduler
+class TaskStopper implements Runnable {
+    private ScheduledExecutorService scheduler;
+
+    public TaskStopper(ScheduledExecutorService scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    @Override
+    public void run() {
+        scheduler.shutdown();
+        System.out.println("Scheduler stopped.");
+    }
+}

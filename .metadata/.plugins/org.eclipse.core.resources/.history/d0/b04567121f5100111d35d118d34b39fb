@@ -1,0 +1,21 @@
+package day7;
+
+class AutoSave
+{
+ 	
+}
+
+
+class AutoCorrect
+{
+	
+}
+
+class Type
+{
+	
+}
+
+public class DaemonThreads {
+
+}

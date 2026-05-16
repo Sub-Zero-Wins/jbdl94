@@ -1,0 +1,54 @@
+
+Thread: a thread is a line of execution.
+
+Thread class: the class available to create extra stacks(threads) in java that implements from Runnable interface.
+
+Runnable Interface: the og functional interface for achieving multithreading.
+
+run(): where we write the thread logic
+
+start(): that internally calls run method based on thread scheduler.
+
+currentThread(): gives details of current thread executing
+
+sleep(): sends thread to waiting state till specified time.
+
+join(): connects the execution of a thread to the main thread
+
+stop(): stops a thread execution
+
+interrupt(): stops a thread from executing in diff conditions
+
+wait() ;sends thread to waiting state till notify is called
+
+notify(): notifies a waiting thread to execute
+
+notifyAll(): notifies all waiting threads to execute
+
+setPriority(): sets priority of a thread
+
+setDaemon(): makes a thread a background thread
+
+isAlive(): checks is thread is active
+
+synchronize keyword: acquires lock on the resource used by a thread
+
+
+callable interface
+--------------------
+when you want your thread to perform some task and return a value with the ability to also throw a custom execption
+we go for callable interface
+
+
+
+executor framework
+---------------------
+creation execution and management of threads.
+
+
+method level locking vs class level locking.
+volatile
+use lambda expression to implement runnable and callable interfaces
+future vs completable future
+
+

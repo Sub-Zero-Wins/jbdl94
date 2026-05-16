@@ -1,0 +1,29 @@
+
+Thread: a thread is a line of execution.
+
+Thread class: the class available to create extra stacks(threads) in java that implements from Runnable interface.
+
+Runnable Interface: the og functional interface for achieving multithreading.
+
+run(): where we write the thread logic
+
+start(): that internally calls run method based on thread scheduler.
+
+currentThread():
+
+sleep()
+
+join()
+
+stop()
+
+interrupt()
+
+wait()
+
+notify()
+
+notifyAll()
+
+synchronize keyword
+
