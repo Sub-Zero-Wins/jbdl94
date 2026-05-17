@@ -1,0 +1,755 @@
+Business Apps
+-------------
+
+J2EE
+
+JDBC-Java Database Conectivity.
+ 
+SERVLETS
+JSP
+
+
+
+Maven: Project Management Tool
+
+helps in giving a project structure
+pom : helps to manage dependencies
+lifecycle: build, compile , jar , war
+plugins: compile, build, java coco 
+
+
+
+
+maven Goals
+
+->compiling source code
+-> running tests
+-> creating jars
+-> cleaning old files.
+
+basic syntax
+mvn plugin-name: goal
+
+mvn compiler:compile
+
+
+
+Maven Lifecycle
+What is Maven Lifecycle?
+
+In Apache Maven, a lifecycle is a sequence of phases used to build and manage a project.
+
+It defines:
+
+How a project is 
+built
+Tested
+Packaged
+Installed
+Deployed
+
+Maven automates the complete build process using predefined lifecycle phases.
+
+Why Maven Lifecycle is Important
+
+The Maven lifecycle helps:
+
+Standardize project builds
+Automate repetitive tasks
+Reduce manual work
+Ensure consistency across projects
+Integrate easily with CI/CD tools
+Maven has 3 Built-in Lifecycles
+Lifecycle	Purpose
+Default	Handles project build and deployment
+Clean	Removes previous build files
+Site	Generates project documentation
+1. Default Lifecycle
+
+This is the main lifecycle used in most Maven projects.
+
+It handles:
+
+Compilation
+Testing
+Packaging
+Installation
+Deployment
+Important Phases of Default Lifecycle
+Phase	Description
+validate	Validates project structure and pom.xml
+compile	Compiles source code
+test	Runs unit tests
+package	Creates JAR/WAR
+verify	Runs quality checks
+install	Installs artifact into local repository
+deploy	Deploys artifact to remote repository
+
+
+Lifecycle Flow
+validate
+   ↓
+compile
+   ↓
+test
+   ↓
+package
+   ↓
+verify
+   ↓
+install
+   ↓
+deploy
+
+
+Example Commands
+Compile Project
+mvn compile
+Compiles source code
+Generates .class files
+Run Tests
+mvn test
+Executes unit tests
+Uses Surefire plugin
+Package Application
+mvn package
+Creates JAR or WAR file
+Output stored in target/
+Install into Local Repository
+mvn install
+Stores artifact in local Maven repository
+Local repository location:
+~/.m2/repository
+Deploy to Remote Repository
+mvn deploy
+Uploads artifact to remote repository like Nexus or Artifactory
+Important Concept
+
+When a phase is executed, all previous phases execute automatically.
+
+Example:
+
+mvn package
+
+Automatically runs:
+
+validate
+compile
+test
+package
+2. Clean Lifecycle
+
+Used to remove old build files.
+
+Important Phase
+Phase	Description
+clean	Deletes target directory
+
+Command:
+
+mvn clean
+Clean Lifecycle Flow
+clean
+3. Site Lifecycle
+
+Used to generate project reports and documentation.
+
+Important Phases
+Phase	Description
+site	Generates project site
+site-deploy	Deploys generated site
+
+Command:
+
+mvn site
+Maven Lifecycle and Plugins
+
+Each lifecycle phase is linked to plugin goals.
+
+Lifecycle Phase	Plugin Goal
+compile	compiler:compile
+test	surefire:test
+package	jar:jar
+install	install:install
+deploy	deploy:deploy
+Real-Time Example
+
+Suppose you build a Spring Boot application.
+
+Command:
+
+mvn clean install
+
+What happens:
+
+Old target folder removed
+Source code compiled
+Unit tests executed
+JAR file created
+Artifact stored in local repository
+Build Lifecycle Example
+Project Structure
+project/
+ ├── src/
+ ├── pom.xml
+ └── target/
+
+After:
+
+mvn package
+
+Generated:
+
+target/
+ ├── classes/
+ ├── test-classes/
+ └── myapp.jar
+ 
+ 
+ 
+Common Maven Commands
+Command	Purpose
+mvn clean	Removes old build
+mvn compile	Compiles code
+mvn test	Runs tests
+mvn package	Creates JAR/WAR
+mvn install	Installs locally
+mvn deploy	Deploys remotely
+mvn clean install	Full clean build
+Advantages of Maven Lifecycle
+Complete build automation
+Standardized development process
+Easy integration with Jenkins and CI/CD
+Reduces manual build effort
+Consistent project management
+
+
+
+Interview Questions
+Q1. What is Maven Lifecycle?
+
+A Maven lifecycle is a predefined sequence of phases used to build and manage projects.
+
+Q2. How many lifecycles are available in Maven?
+
+There are 3 built-in lifecycles:
+
+Default
+Clean
+Site
+Q3. What happens when we run mvn install?
+
+Maven executes:
+
+validate
+compile
+test
+package
+install
+
+And stores artifact in local repository.
+
+Q4. Difference between mvn package and mvn install
+package	install
+Creates JAR/WAR	Creates JAR/WAR + stores in local repository
+Q5. Where are Maven dependencies stored?
+
+Inside local repository:
+
+~/.m2/repository
+Summary
+Maven lifecycle automates build processes.
+Maven contains 3 lifecycles: Default, Clean, Site.
+Lifecycle contains phases.
+Executing one phase runs all previous phases automatically.
+Plugins perform actual work behind lifecycle phases.
+
+
+
+
+
+
+
+Maven Plugins
+What are Maven Plugins?
+
+In Apache Maven, plugins are the core components that perform tasks during the build lifecycle. Maven itself is lightweight, and almost every action is executed through plugins.
+
+Examples of tasks handled by plugins:
+
+Compiling Java code
+Running tests
+Packaging JAR/WAR files
+Generating documentation
+Deploying applications
+Managing dependencies
+Why Maven Plugins are Important
+
+Without plugins, Maven cannot:
+
+Compile source code
+Execute unit tests
+Package applications
+Generate reports
+Deploy artifacts
+
+Plugins make Maven:
+
+Extensible
+Reusable
+Standardized
+Automated
+Types of Maven Plugins
+1. Core Plugins
+
+These are officially maintained by the Maven team and commonly used.
+
+Examples:
+
+Plugin	Purpose
+maven-compiler-plugin	Compiles Java source code
+maven-surefire-plugin	Runs unit tests
+maven-jar-plugin	Creates JAR files
+maven-war-plugin	Creates WAR files
+maven-clean-plugin	Cleans build directories
+maven-install-plugin	Installs artifact into local repository
+maven-deploy-plugin	Deploys artifact to remote repository
+2. Reporting Plugins
+
+Used for generating reports and project documentation.
+
+Examples:
+
+maven-javadoc-plugin
+maven-site-plugin
+maven-project-info-reports-plugin
+Plugin Goals
+
+Each plugin contains one or more goals.
+
+Example:
+
+compiler:compile
+clean:clean
+surefire:test
+
+Syntax:
+
+mvn plugin-name:goal
+
+Example:
+
+mvn clean:clean
+mvn compiler:compile
+Plugin Configuration in pom.xml
+
+Plugins are configured inside the <build> section.
+
+Example:
+
+<build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+            </configuration>
+        </plugin>
+
+    </plugins>
+</build>
+Common Maven Plugins
+1. Maven Compiler Plugin
+
+Used to compile Java source code.
+
+Example:
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.11.0</version>
+
+    <configuration>
+        <source>17</source>
+        <target>17</target>
+    </configuration>
+</plugin>
+
+Command:
+
+mvn compile
+2. Maven Surefire Plugin
+
+Used for running unit tests.
+
+Example:
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.2.5</version>
+</plugin>
+
+Command:
+
+mvn test
+3. Maven JAR Plugin
+
+Creates executable or normal JAR files.
+
+Example:
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.4.1</version>
+</plugin>
+
+Command:
+
+mvn package
+4. Maven WAR Plugin
+
+Used for packaging web applications.
+
+Example:
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>3.4.0</version>
+</plugin>
+5. Maven Clean Plugin
+
+Deletes target folder and previous build files.
+
+Example:
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-clean-plugin</artifactId>
+    <version>3.3.2</version>
+</plugin>
+
+Command:
+
+mvn clean
+Maven Build Lifecycle and Plugins
+
+Plugins are attached to lifecycle phases.
+
+Lifecycle Phase	Plugin Goal
+compile	compiler:compile
+test	surefire:test
+package	jar:jar
+install	install:install
+deploy	deploy:deploy
+Executing Plugins
+Direct Execution
+mvn compiler:compile
+Lifecycle Execution
+mvn package
+
+This automatically runs:
+
+compile
+test
+package
+Custom Plugin Configuration Example
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.2.5</version>
+
+    <configuration>
+        <skipTests>true</skipTests>
+    </configuration>
+</plugin>
+
+Command:
+
+mvn test
+
+Result:
+
+Tests are skipped.
+Plugin Management
+
+Used to define plugin versions centrally.
+
+Example:
+
+<build>
+    <pluginManagement>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+
+        </plugins>
+    </pluginManagement>
+</build>
+Advantages of Maven Plugins
+Automation of build tasks
+Standard project structure
+Easy dependency integration
+Reusable configurations
+Improved CI/CD support
+Better project consistency
+Real-Time Example
+
+Suppose you build a Spring Boot application:
+
+Compiler plugin compiles code
+Surefire plugin runs tests
+JAR plugin packages application
+Deploy plugin uploads artifact to repository
+
+Single command:
+
+mvn clean install
+Interview Questions
+Q1. What is a Maven Plugin?
+
+A plugin is a reusable component that performs specific build tasks in Maven.
+
+Q2. Difference between Dependency and Plugin?
+Dependency	Plugin
+Used in application code	Used during build process
+Added inside <dependencies>	Added inside <plugins>
+Provides libraries	Provides build functionality
+Q3. What is a Goal in Maven?
+
+A goal is a specific task executed by a plugin.
+
+Example:
+
+compiler:compile
+Q4. What is Plugin Management?
+
+It centralizes plugin versions and configurations for child projects.
+
+Summary
+Maven plugins perform build tasks.
+Plugins contain goals.
+Plugins are configured in pom.xml.
+Maven lifecycle phases trigger plugin goals automatically.
+Common plugins include compiler, surefire, clean, jar, and war plugins.
+
+
+
+Introduction to Gradle
+What is Gradle?
+
+Gradle is an open-source build automation and dependency management tool used mainly for:
+
+Java projects
+Spring Boot applications
+Android applications
+Kotlin and Groovy projects
+
+Gradle combines the best features of:
+
+Maven (dependency management)
+Ant (flexibility)
+
+It is designed to provide:
+
+Faster builds
+Flexible configurations
+Better performance
+Features of Gradle
+Incremental builds
+Dependency management
+Plugin support
+Multi-project builds
+Faster execution using build caching
+Flexible scripting
+Supports Java, Kotlin, Groovy, Android, C++, etc.
+Why Use Gradle?
+
+Gradle is popular because:
+
+Builds are faster than Maven
+Configuration is less verbose
+Highly customizable
+Preferred for Android development
+Better performance in large projects
+Gradle Build Script
+
+Gradle uses:
+
+build.gradle (Groovy DSL)
+OR
+build.gradle.kts (Kotlin DSL)
+
+Example:
+
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+Important Gradle Concepts
+1. Project
+
+A Gradle project can be:
+
+Single project
+Multi-module project
+2. Task
+
+Task is the basic execution unit in Gradle.
+
+Examples:
+
+compileJava
+test
+build
+clean
+
+Run task:
+
+gradle build
+3. Dependency Management
+
+Dependencies are added inside:
+
+dependencies {
+}
+
+Example:
+
+implementation 'org.springframework.boot:spring-boot-starter-web'
+Gradle Build Lifecycle
+
+Gradle has 3 phases:
+
+Phase	Description
+Initialization	Identifies project/modules
+Configuration	Configures tasks
+Execution	Executes selected tasks
+Common Gradle Commands
+Command	Purpose
+gradle build	Complete build
+gradle clean	Removes build files
+gradle test	Runs tests
+gradle run	Runs application
+gradle tasks	Lists tasks
+gradle dependencies	Displays dependencies
+Gradle Plugins
+
+Plugins add additional features.
+
+Example:
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+Popular plugins:
+
+Java plugin
+Spring Boot plugin
+Application plugin
+WAR plugin
+Advantages of Gradle
+Faster builds using incremental compilation
+Less XML configuration
+Flexible scripting
+Excellent for large projects
+Preferred for Android development
+Supports parallel execution
+Disadvantages of Gradle
+Steeper learning curve
+Complex scripts can become difficult
+Less standardized than Maven
+Debugging build scripts may be harder
+Maven vs Gradle
+Feature	Maven	Gradle
+Build Script	XML (pom.xml)	Groovy/Kotlin DSL
+Performance	Slower	Faster
+Flexibility	Limited	Highly flexible
+Learning Curve	Easier	Moderate
+Configuration	Verbose	Concise
+Dependency Management	Excellent	Excellent
+Build Speed	Moderate	Faster with caching
+Convention	Strict conventions	Flexible conventions
+Android Support	Limited	Official Android build tool
+Multi-project Support	Good	Excellent
+Customization	Moderate	Very high
+Example Comparison
+Maven Dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+Gradle Dependency
+implementation 'org.springframework.boot:spring-boot-starter-web'
+
+Gradle configuration is shorter and easier to read.
+
+When to Use Maven?
+
+Use Maven when:
+
+Team prefers standardization
+Project is medium-sized
+Simpler configuration is needed
+Beginners are involved
+When to Use Gradle?
+
+Use Gradle when:
+
+Build performance matters
+Project is large and complex
+Android development is involved
+Advanced customization is needed
+Interview Questions
+Q1. What is Gradle?
+
+Gradle is an open-source build automation tool used for compiling, testing, packaging, and managing dependencies.
+
+Q2. Why is Gradle faster than Maven?
+
+Gradle supports:
+
+Incremental builds
+Build caching
+Parallel execution
+Q3. Which language is used in Gradle build scripts?
+Groovy DSL
+Kotlin DSL
+Q4. Which tool is preferred for Android development?
+
+Gradle is the official build tool for Android.
+
+Summary
+Gradle is a modern build automation tool.
+Uses Groovy/Kotlin DSL instead of XML.
+Faster and more flexible than Maven.
+Maven is easier and more standardized.
+Gradle is better for large and performance-focused projects.

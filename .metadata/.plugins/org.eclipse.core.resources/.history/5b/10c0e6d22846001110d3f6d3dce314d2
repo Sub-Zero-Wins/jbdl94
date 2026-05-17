@@ -1,7 +1,0 @@
-package day3;
-
-abstract public class Plane
-{
-	abstract public void fly();
-
-}

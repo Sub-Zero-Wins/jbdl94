@@ -3,6 +3,8 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="bash"/>
+		<item value="print("/>
 		<item value="hashCode"/>
 	</list>
 </section>

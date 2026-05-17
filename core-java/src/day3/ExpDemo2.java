@@ -7,7 +7,7 @@ import day2.Employee;
 public class ExpDemo2 {
 
 	public static void main(String[] args) {
-		throw new Exception("message");
+		//throw new Exception("message");
 		
 	}
 }
