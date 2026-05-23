@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean name="addr" class="com.hcl.beans.Address">
+		<property name="pincode" value="650012"></property>
+		<property name="street" value="Hairan gali ,Pareshan Road"></property>
+		<property name="city" value="Hyderabad"></property>
+	</bean>
+
+	<bean name="stud1" class="com.hcl.beans.Student" >
+		<property name="sid" value="101"></property>
+		<property name="sname" value="saqib"></property>
+		<property name="addr" ref="addr"></property>
+		<property name="contacts">
+			<list>
+				<value>9900099000</value>
+				<value>"saqib@gmail.com"</value>
+				<value>99009999</value>
+			</list>
+		</property>
+
+     </bean>
+
+
+	<bean name="stud2" class="com.hcl.beans.Student" scope="prototype">
+		<constructor-arg name="sid" value="102" />
+		<constructor-arg name="sname" value="Rahul" />
+		<constructor-arg name="addr" ref="addr" />
+		<constructor-arg name ="contacts">
+		<list>
+				<value>9900099000</value>
+				<value>"saqib@gmail.com"</value>
+				<value>99009999</value>
+			</list>
+	    </constructor-arg>
+	</bean>
+
+
+
+
+</beans>

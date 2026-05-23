@@ -1,0 +1,14 @@
+Spring MVC using Spring 
+---------------------------
+The DispatcherServlet intercepts the incoming HTTP request.
+An application can have multiple controllers so the DispatcherServlet interacts with handler mapping to decide which controller to send the request. 
+The handler mapping uses the request URL to decide which controller to send the request and sends controller information to DispatcherServlet.
+After receiving the appropriate controller name, DispatcherServlet sends the request to the controller.
+The controller receives the request from the DispatcherServlet and performs business logic. 
+After the business logic is performed by the controller, it generates some data that needs to be sent back to the client and displayed in a web browser. This information is called a model. So the controller sends the model and logical name of the view to the DispatcherServlet.
+The DispatcherServlet passes the logical view name to a ViewResolver, which determines the actual view.
+The actual view is sent back to DispatcherServlet.
+The DispatcherServlet then passes the model to the View, which generates a response. 
+The generated response is sent back to DispatcherServlet.
+The DispatcherServlet returns the generated response over to the client.
+Note that, by default, DispatcherServlet supports GET, HEAD, POST, PUT, PATCH and DELETE HTTP methods only.
