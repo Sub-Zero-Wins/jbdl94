@@ -20,7 +20,7 @@ public class CustomerLoginController {
 	@GetMapping(value = "/login")
 	public ModelAndView authenticateCustomer(@RequestParam String name,
 			@RequestParam String password) throws Exception {
-System.out.println("running controller");
+            System.out.println("running controller");
 		CustomerLogin customerLogin = new CustomerLogin();
 		customerLogin.setLoginName(name);
 		customerLogin.setPassword(password);
