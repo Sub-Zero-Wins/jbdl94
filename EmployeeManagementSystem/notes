@@ -1,0 +1,347 @@
+Spring Boot REST API Notes
+1. What is REST?
+
+REST (Representational State Transfer) is an architectural style used to build web services that communicate over HTTP.
+
+Features of REST
+Stateless communication
+Uses HTTP protocol
+Supports multiple data formats (JSON, XML)
+Lightweight and scalable
+Platform independent
+REST vs SOAP
+REST	SOAP
+Lightweight	Heavyweight
+Uses HTTP	Uses HTTP, SMTP, TCP
+JSON/XML	XML only
+Faster	Slower
+Easy to develop	Complex
+2. HTTP Methods
+Method	Purpose
+GET	Retrieve data
+POST	Create data
+PUT	Update complete resource
+PATCH	Partial update
+DELETE	Remove resource
+Example
+GET /employees
+
+Returns all employees.
+
+GET /employees/101
+
+Returns employee with ID 101.
+
+POST /employees
+
+Creates a new employee.
+
+PUT /employees/101
+
+Updates employee 101.
+
+DELETE /employees/101
+
+Deletes employee 101.
+
+3. REST API Architecture
+Client
+   |
+   v
+Controller
+   |
+   v
+Service
+   |
+   v
+Repository
+   |
+   v
+Database
+4. Spring Boot REST API Dependencies
+Maven Dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+Optional JPA Dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+5. Important REST Annotations
+@RestController
+
+Marks a class as REST Controller.
+
+@RestController
+public class EmployeeController {
+}
+@RequestMapping
+
+Defines common URL mapping.
+
+@RequestMapping("/employees")
+@GetMapping
+
+Handles GET requests.
+
+@GetMapping
+public List<Employee> getEmployees() {
+    return service.getAllEmployees();
+}
+@PostMapping
+
+Handles POST requests.
+
+@PostMapping
+public Employee addEmployee(@RequestBody Employee emp) {
+    return service.save(emp);
+}
+@PutMapping
+
+Handles PUT requests.
+
+@PutMapping("/{id}")
+public Employee updateEmployee(
+        @PathVariable int id,
+        @RequestBody Employee emp) {
+
+    return service.update(id, emp);
+}
+@DeleteMapping
+
+Handles DELETE requests.
+
+@DeleteMapping("/{id}")
+public String deleteEmployee(@PathVariable int id) {
+    service.delete(id);
+    return "Deleted Successfully";
+}
+6. RequestBody
+
+Used to read JSON data from request body.
+
+Request JSON
+{
+  "id":101,
+  "name":"John",
+  "salary":50000
+}
+Controller
+@PostMapping
+public Employee save(@RequestBody Employee emp) {
+    return service.save(emp);
+}
+7. PathVariable
+
+Used to extract values from URL.
+
+@GetMapping("/{id}")
+public Employee getEmployee(
+        @PathVariable int id) {
+
+    return service.findById(id);
+}
+
+Request:
+
+GET /employees/101
+8. RequestParam
+
+Used to read query parameters.
+
+@GetMapping("/search")
+public Employee search(
+        @RequestParam int id) {
+
+    return service.findById(id);
+}
+
+Request:
+
+GET /employees/search?id=101
+9. ResponseEntity
+
+Used to customize HTTP response.
+
+@GetMapping("/{id}")
+public ResponseEntity<Employee> getEmployee(
+        @PathVariable int id) {
+
+    Employee emp = service.findById(id);
+
+    return ResponseEntity.ok(emp);
+}
+Different Responses
+ResponseEntity.ok(data)
+
+ResponseEntity.notFound().build()
+
+ResponseEntity.status(201).body(data)
+
+ResponseEntity.badRequest().build()
+10. HTTP Status Codes
+Code	Meaning
+200	OK
+201	Created
+204	No Content
+400	Bad Request
+401	Unauthorized
+403	Forbidden
+404	Not Found
+500	Internal Server Error
+11. REST API Example
+Entity
+public class Employee {
+
+    private int id;
+    private String name;
+    private double salary;
+
+    // getters setters
+}
+Service
+@Service
+public class EmployeeService {
+
+    private List<Employee> employees =
+            new ArrayList<>();
+
+    public List<Employee> getAllEmployees() {
+        return employees;
+    }
+
+    public Employee save(Employee emp) {
+        employees.add(emp);
+        return emp;
+    }
+}
+Controller
+@RestController
+@RequestMapping("/employees")
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService service;
+
+    @GetMapping
+    public List<Employee> getEmployees() {
+        return service.getAllEmployees();
+    }
+
+    @PostMapping
+    public Employee addEmployee(
+            @RequestBody Employee emp) {
+
+        return service.save(emp);
+    }
+}
+12. Exception Handling
+Custom Exception
+public class EmployeeNotFoundException
+        extends RuntimeException {
+
+    public EmployeeNotFoundException(
+            String message) {
+        super(message);
+    }
+}
+Global Exception Handler
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(
+            EmployeeNotFoundException.class)
+    public ResponseEntity<String> handleException(
+            EmployeeNotFoundException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+}
+13. Validation
+Dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>
+        spring-boot-starter-validation
+    </artifactId>
+</dependency>
+Entity Validation
+public class Employee {
+
+    @NotNull
+    private Integer id;
+
+    @NotBlank
+    private String name;
+
+    @Min(1000)
+    private double salary;
+}
+Controller
+@PostMapping
+public Employee save(
+        @Valid @RequestBody Employee emp) {
+
+    return service.save(emp);
+}
+14. Consuming REST APIs using RestTemplate
+@Autowired
+private RestTemplate restTemplate;
+
+Employee emp =
+    restTemplate.getForObject(
+        "http://localhost:8080/employees/1",
+        Employee.class);
+15. Consuming REST APIs using WebClient
+WebClient webClient =
+        WebClient.create();
+
+Employee emp =
+    webClient.get()
+             .uri("/employees/1")
+             .retrieve()
+             .bodyToMono(Employee.class)
+             .block();
+16. Testing REST APIs
+Using Postman
+Create Request
+Select HTTP Method
+Enter URL
+Add JSON Body
+Send Request
+Verify Response
+
+Example:
+
+{
+  "id":101,
+  "name":"John",
+  "salary":50000
+}
+Spring Boot REST API Interview Questions
+What is REST?
+Difference between REST and SOAP?
+Difference between PUT and PATCH?
+Difference between @Controller and @RestController?
+Difference between @PathVariable and @RequestParam?
+What is ResponseEntity?
+Why use @RequestBody?
+What is statelessness in REST?
+How is exception handling done in Spring Boot REST APIs?
+Difference between RestTemplate and WebClient?
+REST API Best Practices
+Use nouns in URLs (/employees, /orders)
+Use proper HTTP methods
+Return meaningful HTTP status codes
+Validate input data
+Handle exceptions globally
+Version APIs (/api/v1/employees)
+Keep APIs stateless
+Use DTOs instead of exposing entities directly
+Document APIs using Swagger/OpenAPI
+
+These notes cover the complete Spring Boot REST API flow typically taught in Java Full Stack training and are suitable for interviews as well as hands-on development
