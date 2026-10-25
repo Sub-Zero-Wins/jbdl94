@@ -1,0 +1,1647 @@
+Spring Frame work - Rod Johnson 2003
+-----------------
+
+Dependency injection framework , for Rapid Application application development
+with minimum lines of code.
+
+
+IoC Container-> inverson of control=
+
+
+0.0.1- version for development environment version
+1.0.0- after first release
+
+     1.2.3
+     | | |
+     | | bug fixes
+     | patch updates that are not breaking features
+     updates that are breaking features
+
+
+Steps
+------
+1. Create maven project , add spring dependencies
+2. create beans you want
+3. create a config.xml file
+4. invoke the IOc container for the objects created by it
+
+
+a. Setter injection
+b. Constructor injection
+c. scope singleton/prototype
+d. injecting collection objects
+e. injection user defined objects (Dependency Injection)
+
+
+-------------------------------------------------------------------
+If one bean class is dependent on another bean class, 
+then the bean dependencies need to be explicitly 
+defined in your configuration class but you can 
+let the Spring IoC container to inject the 
+dependencies into dependent bean classes
+ without defining in your configuration class.
+ This is called as autowiring.
+
+To do autowiring, you can use @Autowired annotation. 
+This annotation allows Spring IoC container to resolve and inject dependencies 
+into your bean. 
+It can be applied to attributes, constructors, setter methods of a bean class. 
+
+Now, let us see how to use @Autowired annotation
+
+
+drawbacks
+----------
+
+1. Programmer has no control.
+
+2. Cannot be used for primitive data types and String types
+Overriding: 
+You can still specify dependencies 
+using <constructor-arg> and <property> settings which will always override
+ @Autowired.
+Primitive data types:
+ Autowiring can't be used to inject primitive and string values. 
+   It works with reference only.
+--------------------------------------------------------------------
+Spring Jdbc
+------------
+JDBC Api drawbacks
+1. We need to write lengthy code
+2.  Exception handling makes code bulky
+3. Boilerplate(repetative) code
+4. database querying is time consuming.
+
+
+Spring Jdbc
+---------------
+
+Spring Jdbc  Provides JdbcTemplate class which has all the important methods to perform
+operations with database.
+
+Spring Boot(Autoconfiguration )
+-------------
+Its an extension of spring framework introduced to overcome the challenges faced in a spring application like ,
+
+
+1. Configuration. 
+2. Project Dependency management
+
+the above mentioned drawbacks reduce the productivity of a developer, hence Spring Boot is used to overcome it.
+
+
+
+Spring Boot is a framework built on top of springframewok that helps developers build spring based apps 
+quickly and eaasily.
+
+features. 
+Spring Boot is framework that fascilitates development of microservice based projects.
+
+
+1. Spring Boot is an opiniated framework. ex spring boot uses tomcat as a default web container.
+
+2. Spring Boot is customizable.
+
+3. Starter Dependencies
+
+4. Automatic Configuration
+
+5. Spring Boot Actuator
+
+6. Embedded servlet container
+
+
+some popular starter dependencies we are going to use
+
+spring boot starter
+spring boot starter aop
+spring boot starter jdbc-
+spring boot starter data-jpa-hibernate
+
+spring boot starter web-creating rest apis
+spring boot starter test- testing/mocking
+spring boot starter log4j2-logging
+spring boot starter actuator- health check, monitoring app
+
+------------------------------------
+
+
+@SpringBootAnnotation
+------------------------
+This annotation indicates that it is a configuration class that triggers auto-configuration and component scanning.
+Its a combo of the following annotations
+
+1. @EnableAutoConfiguration
+
+2. @ComponenetScan -> @Component , @Controller, @Service , @Repository, scan these create objects and inject them in @Autowired.
+
+3. @Configuration/ @SpringBootConfiguration 
+
+
+--------------------------------------------------------------
+
+AOP= Aspect Oriented Programming.
+----------------------------------
+
+Cross Cutting Concersn: Move additional Services of a project into other classes and bind them when and where ever they are
+  required.
+
+1. Aspect: a class that provides additional services to the project like Transaction Management,Logging,Security, encode decode etc
+
+2. Advice: methods inside aspect class which are actual implementation of aspect.
+            Advices can be of 5 types.
+            Before : executes before calling business method
+            After  : executes after executing business method wether successful or unsucessful
+            Around : advice code is divided into 2 parts 1st half executes before and 2nd after the business method
+            AfterReturning: executes only after successful completion of business method
+            AfterThrowing: executes only if business method throws an exception
+            
+
+3. Pointcut: Its an expression that selects the business method which needs advices. It can never specifiy what advices.
+
+              expression: AS RT package.ClassName.methodName(Parameters)
+
+      2 special symbols allowed for a pointcut expression is "*" and "."
+
+1. public int  com.gl.service.TicketService.bookTicket(Customer) ->
+2. public int  com.gl.service.TicketService.*() -> all methods with 0 parameters
+3. public int  com.gl.service.TicketService.*(..) -> all methods with 0 or more parametersin TicketService class
+3. * * com.gl.service.*.*(..) -> all methods with 0 or more parameters inside service package classes.
+4. * * *.*.*(Customer)
+
+
+
+
+
+4. JoinPoint: Its a combo of Advices+pointCut, it connects advices to business methods .
+
+5. Weaving : Its a process of mixing b.class methods and their connected advices
+
+6. Proxy: Final output (class/object) is a proxy that contains both business methods and advices connected
+
+7. Taget : business class is the target class. 
+
+
+
+SPring MVC using Spring Boot 
+The DispatcherServlet intercepts the incoming HTTP request.
+An application can have multiple controllers so the DispatcherServlet interacts with handler mapping to decide which controller to send the request. 
+The handler mapping uses the request URL to decide which controller to send the request and sends controller information to DispatcherServlet.
+After receiving the appropriate controller name, DispatcherServlet sends the request to the controller.
+The controller receives the request from the DispatcherServlet and performs business logic. 
+After the business logic is performed by the controller, it generates some data that needs to be sent back to the client and displayed in a web browser. This information is called a model. So the controller sends the model and logical name of the view to the DispatcherServlet.
+The DispatcherServlet passes the logical view name to a ViewResolver, which determines the actual view.
+The actual view is sent back to DispatcherServlet.
+The DispatcherServlet then passes the model to the View, which generates a response. 
+The generated response is sent back to DispatcherServlet.
+The DispatcherServlet returns the generated response over to the client.
+Note that, by default, DispatcherServlet supports GET, HEAD, POST, PUT, PATCH and DELETE HTTP methods only.
+---------------------------------------------------------------------------
+
+Logging in spring boot using default logger
+--------------------------------------------
+
+Spring Boot uses SL4J along with logback implementations for logging
+Bydefault it logs messages in console at ERROR,WARN and INFO level.
+We can configure the logging levels,logging format,log file location by setting all logging related properties in
+the application.properties file.
+
+Configuring log level
+
+logging.level.com.gl.repo = error
+
+
+configuring logging pattern
+
+
+logging.pattern.console = %d{yyyy-MM-dd HH:mm:ss a} [%t] %-5level %logger{36}  -%msg%n
+
+logging.pattern.file = %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}  -%msg%n
+
+
+Configuring logging file
+
+logging.file= error.log
+
+----------------------------------------
+Logging using log4j2
+
+
+
+where is logging required?
+----------------------------
+
+entity/model/dto -> logging? no logging
+
+business/service layer ? logging is mostly used here.
+
+
+   Log4j componenets
+---------------------------
+
+
+
+Logger (which class)         Appender(where to log)         layout(how to log) 
+
+
+configuration .
+
+name = log4j2.xml
+-------------------
+
+<Configuration>
+
+	<Appenders>
+
+		<!-- File Appender -->
+		<File name="FileAppender" fileName="logs/error.log">
+			<PatternLayout
+				pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+
+		
+	</Appenders>
+	<Loggers>
+		<Root level="ERROR">
+            <AppenderRef ref="FileAppender" />
+        </Root>
+		<Logger name="com.infy" level="error" additivity="false">
+			<AppenderRef ref="FileAppender" />
+		</Logger>
+       
+	</Loggers>
+</Configuration>
+
+
+Types of appenders
+1. ConsoleAppender - log into a console
+2. FileAppender- log into a file
+3. JdbcAppender - logs in database
+4. httpAppender - send logs from one server to another
+5. SMTP -email
+
+
+Types of layouts
+1. Simple Layout - prints messages as given by app
+2. Html  Layout   - prints messages as html file
+3. XML layout    -prints messages in xml
+4. Pattern layout: prints messages as mentioned by the programmer 
+
+
+
+Priority MEthods
+----------------
+
+1. Trace        trace(msg)
+2. DEBUG        debug(msg) 
+3. INFO         info(msg)
+4. WARN		warn(msg)
+5. ERROR	error(msg)
+6. FATAL	fatal(msg)
+7. OFF		 
+8. ALL
+
+
+Debug/Trace - This is for detailed final/ success messages
+ex. employee created with id 1010
+
+INFO: to print current status in execution
+      ex: request received in controller layer
+          object sent to service layer
+          object validated in dao layer
+          try block completed execution
+
+WARN: print warning messages
+      File object is created but not closed
+      Database connection is not closed
+
+ERROR: to print execption messages
+        INVALID credentials, NullPE etc.
+
+FATAL: to print High level execptions that brings down the application and user is not able to proceede
+
+        ex; netwrok is unavailable
+            server/middleware is down
+            services are suspended due to maintainance.
+
+
+
+Pattern Layout formatting
+--------------------------
+
+mm= mins
+ss= secs
+SSS= milli Secs
+
+%C class name
+%M method name
+%m = message
+%p = priority message
+
+%d = for date
+%d{dd-MM-yy hh:mm:ss:SSS a}
+%d{dd-MMM-yyyy HH}
+
+
+MM =01 to 12
+MMM= JAN to DEC
+HH = 24 hr format
+hh = 12 hr format
+a = AM/PM
+
+Note : Logging is required for service layer mostly and since logging not the main/business functionality we centralize the logging using AOP .
+
+Repository/Dao/Persistance layer
+---------------------------------
+
+layer interacts with the databse.
+
+spring modules to choose from.
+1. Spring Jdbc
+-----------------
+
+jdbc requires manual mapping of objects to relational databases
+it involes complexity and is not easy due to paradigm mismatch between Object and relatonal
+model aka Object Relational Mismatch
+
+1. Problem of granularity
+   objects are more granular and multiple object data can be represented in a single tab;e
+2. Problem of inheritence
+   objects can have inheritence but tables cannot.
+3. Problem of association
+    ref variable are not same as pk-fk relations
+4. Problem of navigation
+   to access multiple objects we use "." operator in objects and joins in tables is used to
+   access across multiple tables.
+
+
+2. Spring ORM
+   ORM is a design pattern or a technique which maps an object model with a relational model 
+ features
+1. It resolves Object -relational impedence mismatch
+2. get rid of sql queries
+3. It is database independent
+
+To use Orm we use Java Persistence Api specification that defines standard for using object relational mapping
+in java apps for interacting with relational databases.
+
+  API to class with tables
+  API for performing crud ops
+  JPQL, 
+  Criteria API which uses object graph to fetch data from database.
+
+note : always use one table to map to one class/entity.
+
+
+
+ORM provides EntityManager whose methods can be used to perform bd operations. Every Entity
+Manager instance has a persistance  context that manages the objects and at any point
+in time there can exist only one object with a primary key in it.
+
+Every Entity Object has a state in relation to both persistence context and  the database
+depending on the relationship with persistance context every object undergoes a few states.
+called as the life cycle of an entity object.
+
+1. New/Transient State- a newly created object with no persistence context and having no row associated in the table
+
+2. Managed/Persistent State.- An entity Object which has a persistence context and an identifier value associated with is is said to be managed
+
+3. Removed State- An entity Object which has a persistence context and has a row mapped to it in db but is marked for deletion
+
+4.  Detached State- an entity object which is no longer associated with a persistence context .
+3. Spring Data
+
+
+
+
+H2 database 
+-----------
+its an in memory database
+it runs on tomcat server
+its used in the development and testing phase of an application
+Its a temporary data base , as data remains as long as the app is hosted on the server
+used for storing small amount of data
+
+JPQL
+----
+
+Java Persistence Query Language.
+--------------------------------
+
+Queries in this are defined using entity classes and its attributes
+instead of tables and columns, and is easy for java devs to use.
+
+
+
+Query query = entityManager.createdQyuery("Select c From Customer c")
+      List<Customer> customers =  query.getResultList();
+
+List getResultList()
+Integer executeUpdate()
+Object getSingle Result()
+
+
+
+Query query = entityManager.createdQyuery("Select c.custName, c.custEmail From Customer c")
+      List<Customer> customers =  query.getResultList();
+
+
+"SELECT c.custName, c.custEmail FROM Customer c WHERE c.custID=1002"
+
+"SELECT c.custName, c.custEmail FROM Customer c WHERE c.custID= :custId"
+
+
+
+
+List<Customer> getCustomerByID(Integer custId){
+
+Query query = entityManager.createdQyuery("SELECT c.custName, c.custEmail FROM Customer c WHERE c.custID= :Id");
+   query.setParameter("Id",custId)
+      List<Customer> customers =  query.getResultList();
+}
+
+List<Customer> getCustomerByID(Integer custId){
+
+Query query = entityManager.createdQyuery("SELECT c.custName, c.custEmail FROM Customer c WHERE c.custID= ?1");
+   query.setParameter(1,custId)
+      List<Customer> customers =  query.getResultList();
+}
+
+
+"SELECT c FROM Customer c WHERE c.custName LIKE 's%'"
+
+
+"SELECT c FROM Customer c WHERE c.city IN ('Delhi','Goa')"
+
+
+
+"SELECT c FROM Customer c WHERE SIZE(c.loans) > 2"
+
+
+"SELECT  AVG(a.balance) FROM Account a"
+"SELECT  SUM(a.balance) FROM Account a"
+"SELECT  AVG(a) FROM Account a"
+"SELECT  MIN(a.balance) FROM Account a"
+"SELECT  MAX(a.balance) FROM Account a"
+
+String Functions
+
+
+"SELECT c FROM Customer c GROUP BY c.city"
+
+"SELECT c FROM Customer c ORDER BY c.name ASC"
+
+"UPDATE Customer c SET c.city = 'DELHI' where c.custId =1002"
+
+"DELETE form Account c WHERE a.status = 'INACTIVE'"
+
+
+Consider the following requirement:
+
+As an admin, I should be able to add customer details to the database and customer id should be automatically generated.
+
+To implement this requirement some mechanism is required so that primary key gets generated automatically. JPA provides different strategies using which primary key values can be generated automatically. The different strategies provided by JPA are as follows:
+
+IDENTITY strategy
+TABLE strategy
+AUTO strategy
+SEQUENCE strategy
+Note: These strategies are not supported by all databases. Due to this, we will learn IDENTITY and TABLE strategy using MySQL database and AUTO and SEQUENCE strategy using Oracle database.
+
+Identity Strategy
+In this strategy, the value of primary key is generated using the identity column of the table. The identity column of a table is an integer column having a primary key or unique constraint with the AUTO_INCREMENT feature. For example, in following customer table customer_id is an identity column:
+
+CREATE TABLE customer (
+	customer_id int AUTO_INCREMENT,
+	email_id varchar(20),
+	name varchar(10),
+	date_of_birth date,
+	constraint ps_customer_id_pk primary key (customer_id)
+);
+To use this strategy, the primary key attribute of entity class is annotated with @GeneratedValue annotation with GenerationType.IDENTITY as the value of the strategy attribute along with @Id annotation. The following code snippet shows how @GeneratedValue annotation is used to generate values for customerId:
+
+@Entity
+@Table(name="customer")
+public class CustomerEntity {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer customerId;
+	
+    // rest of the code
+}
+
+When you persist a new CustomerEntity object is persisted, the value for customerId will be generated as follows:
+
+If there are no rows present in customer table, then starting value of the identity column will be 1, and it will be incremented by 1 for each new row added. 
+If the rows are already present in customer table, then the maximum value from the identity column is taken and incremented by 1 to generate the next primary key value. For example if maximum value present in identity column is 5 then next primary key value generated will be 6.
+Note : This strategy is database dependent, for example it works on MySQL but not in Oracle because Oracle does not support the identity column. 
+
+Table Strategy
+In this strategy, a database table is used to generate primary key values. 
+
+To use this strategy, the primary key attribute of entity class is annotated with @GeneratedValue annotation with GenerationType.TABLE as the value of the strategy attribute along with @Id annotation. The following code snippet shows how @GeneratedValue annotation is used to generate values for customerId:
+
+@Entity
+@Table(name="customer")
+public class CustomerEntity {
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
+	private Integer customerId;
+    //rest of the code
+}
+
+When you persist a new CustomerEntity entity, JPA selects the next primary key value from the next_val column of following hibernate_sequences table:
+
+ 
+
+In this table the value in sequence_name column is default and the next_val column contains the next value of the primary key. If it is not present you must create it. For example, if the value in the next_val column is 5 and you persist a new CustomerEntity object then customer details with customerId as 5 will be persisted in the customer table and the value in the next_val column will be updated to 6
+
+
+Table Strategy using custom table
+You have seen how to generate primary key values using table strategy using default table. But you can also specify you own table for generating primary key value. To do this you have to use @TableGenerator annotation as follows:
+
+@Entity
+@Table(name="customer")
+public class CustomerEntity {
+	@Id
+	@TableGenerator(
+            name="pkgen", 
+            table="id_gen", 
+            pkColumnName="gen_key", 
+            valueColumnName="gen_value",
+            pkColumnValue="cust_id",
+            allocationSize=1)
+	@GeneratedValue(generator="pkgen",strategy=GenerationType.TABLE)
+	private Integer customerId;
+    //rest of the code
+}
+
+In the above code, @TableGenerator annotation specifies that following id_gen table is used for generating primary key values:
+
+  
+
+The @TableGenerator annotation has the following attributes:
+
+name : It specifies the name of the generator. This name is used to access the generator inside entity class.
+table: It specifies the name of the table which has to be used for generating primary key values. In our case table is id_gen.
+pkColumnName : It is the name of the primary key column which contains generator names used for generating primary key value. In our case pkColumnName is gen_key.
+valueColumnName: It is name of the column which contains the last primary key value generated. In our case valueColumnName is gen_value.
+pkColumnValue: In table may generators are may be present. This attribute specifies which generator has to be used for generating primary key value among set of generators in the table. In our case pkColumnValue is cust_id.
+allocationSize: It specifies the amount to increment by when allocating id numbers from the generator.
+
+
+Sequence Strategy
+In this strategy, the primary key value is generated from a database sequence. To use this strategy, the primary key attribute of entity class is annotated with @GeneratedValue annotation with GenerationType.SEQUENCE as the value of the strategy attribute along with @Id annotation as follows:
+
+@Entity
+@Table(name="Customer")
+public class CustomerEntity {
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Integer customerId;
+	
+    // rest of the code
+}
+In the above code no information is provided about which database sequence to use so default Hibernate sequence, hibernate_sequence, is used. This sequence does not comes with the database. The developer has to create it.
+
+You can also use a custom database sequence for generating primary key values. For this you have to define a sequence generator which contains information about database sequence using @SequenceGenerator annotation. Then a reference of this sequence generator is used in @GeneratedValue annotation. For example, the following code snippet shows how custom database sequence can be used:
+
+@Entity
+@Table(name="Customer")
+public class CustomerEntity {
+	@Id
+    @SequenceGenerator(name="pkgen",sequenceName="customer_sequence",allocationSize=1)
+	@GeneratedValue(generator="pkgen",strategy=GenerationType.SEQUENCE)
+	private Integer customerId;
+	// rest of the code
+}
+In the above code, @SequenceGenerator annotation defines a sequence generator with the name "pkgen" which references database sequence named "customer_sequence" and the @GeneratedValue annotation references this using generator attribute. The customer_sequence sequence must be present in the database. If it is not present you must create it.
+
+Auto Strategy
+
+In this strategy, the persistence provider automatically selects appropriate strategy for generating primary key values depending on the database used. If For example, if Hibernate 5.0 is persistence provider and MySQL database is used then this strategy selects TABLE strategy (hibernate_sequences table) for generating primary key values otherwise it uses SEQUENCE strategy (hibernate_sequence sequence).  To use this strategy, the primary key attribute of entity class is annotated with @GeneratedValue annotation with GenerationType.AUTO as the value of the strategy attribute along with @Id annotation as follows:
+
+@Entity
+@Table(name="customer")
+public class CustomerEntity {
+   @Id 
+   @GeneratedValue(strategy=GenerationType.AUTO)
+   private int customerId;
+   //rest of the code 
+}
+
+In this strategy, the primary key value is generated using the identity column of the table. An integer column having a primary key or unique constraint with the AUTO_INCREMENT feature is known as identity column of a table. For example, in following Customer table customer_id is an identity column:
+
+CREATE TABLE customer (
+	customer_id int AUTO_INCREMENT,
+	email_id varchar(20),
+	name varchar(10),
+	date_of_birth date,
+	constraint ps_customer_id_pk primary key (customer_id)
+);
+
+
+
+
+
+
+Cardinality
+
+The cardinality of relationship defines how many entities exist on each side of the same relationship instance. In our Customer and Address example, one customer can have many addresses, so the cardinality of Customer side is one and Address side is many. On the basis of cardinality, we have following types of relationships:
+
+One – to – One Relationship
+One – to – Many Relationship
+Many – to – One Relationship
+Many – to – Many Relationship 
+
+
+
+1. One – to – One Relationship
+
+In above code the reference of AddressEntity in annotated with @OneToOne annotation which declares that there is a one-to-one relationship between CustomerEntity and AddressEntity classes. The @JoinColumn annotation is used to define the name of the foreign key column in Customer table that links the customer to the address. Now let us understand these annotations in detail:
+
+@OneToOne(cascade = CascadeType.ALL)
+
+This annotation specifies that the association relationship has one-to-one multiplicity.
+The cascade attribute specifies operations performed on owner entity that must be transferred or cascaded to the target entity. It takes values of type CascadeType enumeration. The values of this enumeration are PERSIST, REFRESH, REMOVE, MERGE, DETACH and ALL. The value ALL specifies that all operations performed on CustomerEntity will be cascaded to AddressEntity. By default, none of the operations will be cascaded.
+@JoinColumn(name = "address_id", unique = true)
+
+This annotation is used to specify the foreign key column that joins the owner and target entity.
+The name attribute specifies the name of the foreign key column in the table mapped to the owner entity.
+The unique = true assures that unique values will be stored in the join column.
+
+
+2. Many – to – One RelationshipRelationship
+
+
+In the above code the reference of CustomerEntity in annotated with @ManyToOne annotation which declares that there is many-to-one relationship between CustomerEntity and LoanEntity. The @JoinColumn annotation is used to define the name of the foreign key column in the Customer table that links the customer to the card. Now let us understand these annotations in detail:
+
+@ManyToOne(cascade = CascadeType.ALL)
+
+This annotation indicates that the relationship has many-to-one cardinality. 
+The cascade attribute tells which operation (such as insert, update, delete) performed on source entity can be transferred or cascaded to target entity. By default, none of the operations will be cascaded. It takes values of type CascadeType enumeration.  The value ALL means all operations will be cascaded from source to target. Other values of this enumeration are PERSIST, REFRESH, REMOVE, MERGE, and DETACH.
+@JoinColumn(name = "cust_id")
+
+This annotation is used to define the name of the foreign key column that joins the owner and target entity.
+The name attribute specifies the name of the foreign key column in the table mapped to the source entity.
+
+
+
+3. One – to – Many Relationship
+
+In CustomerEntity class reference of List<CardEntity> in annotated with @OneToMany annotation which declares that there exists a one-to-many relationship between CustomerEntity and CardEntity classes. The @JoinColumn annotation is used to give the name of a foreign key column in Card table which links the customer to the card. You can also use Set<CardEntity> instead of List<CardEntity>. Now let us understand these annotations in detail:
+
+@OneToMany(cascade = CascadeType.ALL)
+
+This annotation indicates that the relationship has one-to-many cardinality. 
+The cascade attribute tells which operation (such as insert, update, delete) performed on the source entity can be transferred or cascaded to the target entity. By default, none of the operations will be cascaded. It takes values of type CascadeType enumeration.  The value ALL means all operations will be cascaded from source to target. Other values of this enumeration are PERSIST, REFRESH, REMOVE, MERGE, and DETACH.
+@JoinColumn(name = "cust_id")
+
+This annotation is used to specify the join column using its name attribute. The target entity is mapped to the Customer table which has cust_id as the foreign key column, so the name is cust_id.
+
+4. In the above code the reference of Set<ServiceEntity> in annotated with @ManyToMany annotation which declares that there is a many-to-many relationship between CustomerEntity and ServiceEntity. The @JoinColumn annotation is used to define the name of the join table and foreign key columns that store the many-to-many association. You should always use a Set instead of a List while implementing many to many associations. This is because JPA uses a very inefficient approach to remove entities from the association where it removes all records from the association table and re-insert the remaining ones.
+
+Now let us understand these annotations in detail:
+
+@ManyToMany(cascade = CascadeType.ALL)
+
+This annotation indicates that the relationship has many-to-many cardinality. 
+The cascade attribute tells which operation (such as insert, update, delete) performed on source entity can be transferred or cascaded to target entity. By default, none of the operations will be cascaded. It takes values of type CascadeType enumeration.  The value ALL means all operations will be cascaded from source to target. Other values of this enumeration are PERSIST, REFRESH, REMOVE, MERGE and DETACH.
+@JoinTable(name="customer_service", joinColumns=@JoinColumn(name="cust_id"),inverseJoinColumns=@JoinColumn(name="serv_id"))
+
+This annotation is used to define the join table.
+The name attribute specifies the name of the join table. 
+The joinColumns are foreign key columns of the join table which references the columns of the table mapped with the source entity of the association. The joinColumns are given using @JoinColumn annotation whose name attribute specifies the name of column in join table which is mapped with primary key column of the table mapped with the source entity.     
+The inverseJoinColumns are foreign key columns of the join table which references the columns of the table mapped with the target entity of the association. The inverseJoinColumns are given using @JoinColumn annotation whose name attribute specifies the name of column in join table which is mapped with primary key column of the table mapped with the target entity.
+
+
+
+
+Let us consider one more scenario. Suppose, in a banking application a customer wants to see the details of all transactions performed by him/her. A customer can have hundreds of transactions and displaying all of them in a single page is not advisable. Also, sometimes fetching data of all the transactions at once is time consuming.  
+
+It would be much more better if we display the transaction details to the customer in smaller chunks, for example, 10 records per page. This can be implemented by using pagination.
+
+In pagination, all the records are not fetched at same time, rather a subset of records is fetched first and then the next subset of records in fetched if required and so on. This subset of records is called as Page. Every page has two fields – the page number and page size. The page number represents the individual subset of records and page size represents the number of records in a page.
+
+Also, the customers might want to view the transactions in a specific order. For example, the customer might want to view the transactions in increasing order of transaction date. This can be implemented by sorting the records.
+
+Spring Data provides support for pagination and sorting through the PagingAndSortingRepository repository interface.
+
+JPA inheritence Strategies
+------------------------------
+
+
+JPA Single Table Strategy
+
+The single table strategy maps all entities of the inheritance structure to the same database table. 
+This approach makes polymorphic queries very efficient and provides the best performance.
+
+But it also has some drawbacks. 
+The attributes of all entities are mapped to the same database table.
+Each record uses only a subset of the available columns and sets the rest of them to null.
+You can, therefore, not use not null constraints on any column that isn’t mapped to all entities. 
+That can create data integrity issues, and your database administrator might not be too happy about it.
+
+The following syntax represents the single table strategy: -
+
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)  
+
+Table-per-class strategy
+Each of the concrete classes gets still mapped to its own database table. 
+This mapping allows you to use polymorphic queries and to define relationships to the superclass. 
+But the table structure adds a lot of complexity to polymorphic queries, and you should, therefore, avoid them.
+
+The following syntax represents the table-per-class strategy: -
+
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)  
+
+JPA Joined strategy
+The joined table approach maps each class of the inheritance hierarchy to its own database table. 
+This sounds similar to the table per class strategy.
+ But this time, also the abstract superclass  gets mapped to a database table.
+ This table contains columns for all shared entity attributes. 
+The tables of the subclasses are much smaller than in the table per class strategy. 
+They hold only the columns specific for the mapped entity class and a primary key with the same value
+as the record in the table of the superclass.
+
+The following syntax represents the joined strategy: -
+
+@Inheritance(strategy=InheritanceType.JOINED)  
+
+
+
+
+
+Choosing a Strategy
+Choosing the right inheritance strategy is not an easy task. As so often, you have to decide which advantages you need and which drawback you can accept for your application. Here are a few recommendations:
+
+If you require the best performance and need to use polymorphic queries and relationships, you should choose the single table strategy. But be aware, that you can’t use not null constraints on subclass attributes which increase the risk of data inconsistencies.
+If data consistency is more important than performance and you need polymorphic queries and relationships, the joined strategy is probably your best option.
+If you don’t need polymorphic queries or relationships, the table per class strategy is most likely the best fit. It allows you to use constraints to ensure data consistency and provides an option of polymorphic queries. But keep in mind, that polymorphic queries are very complex for this table structure and that you should avoid them.
+
+Swagger
+--------
+
+use new version.
+
+
+<!-- Swagger UI -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.2.32</version>
+		</dependency>
+
+
+localhost:8080/swagger-ui.html
+
+swagger ui
+
+https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/
+
+
+
+
+Spring Security
+-----------------
+Cyberattack is increasing every year by exploiting the vulnerabilities at different levels like:
+
+1. Operating System 
+
+2. Network 
+
+3. Application
+
+Most of the organizations protect networks with high-end firewalls which is very difficult to penetrate 
+and also take care of vulnerability patches for the Operating Systems. The percentage of attacks at the 
+application level is much higher compared to the other levels.
+
+It is essential to develop a secure application by incorporating securing measures during development 
+processes such as secure design and coding, following security best practices and security testing, etc.
+
+The majority of the Cyberattacks target web applications in an organization rather than its network. 
+Attacking a network is tedious for any hacker as most of the organizations have a firewall in place 
+which is very difficult to penetrate. Hence, it is important to gain an understanding of how to build 
+secure web applications and fix vulnerabilities present in existing web applications.
+
+
+The following are some of the de-facto standards to be considered for securing applications at design, coding, and testing.
+
+OWASP (Open Web Application Security Project) 
+
+It s a non-profitable organization which works in the area of web application and mobile security.
+Its objective is to make people aware of common and critical security vulnerabilities and measures to avoid those vulnerabilities.
+
+ 
+
+CWE/SANS Top 25 Most Dangerous Programming Errors
+
+This Top 25 programming errors list is the most widespread and critical errors that can lead to serious vulnerabilities in the application,
+ which are easy to find and exploit.
+
+The Top 25 list is a tool for educating and creating awareness to help developers to prevent the most dangerous programming errors,
+thereby helping them to create a more secure application. 
+
+
+
+
+
+
+An overview of the common Java-based security frameworks for securing an application:
+
+ 
+
+JAAS (Java Authentication and Authorization Services)
+
+Java EE Security API for user authentication and authorization in Java applications.
+
+JAAS has been integrated with Java Standard Edition Development Kit starting with J2SDK 1.4.
+
+It can be used for authentication of users, to determine who is currently executing Java code
+
+It can be used for authorization of users to ensure they have the required permissions to do the actions performed.
+
+Spring Security
+
+Spring Security is one of the popularly used frameworks for securing enterprise Java application
+
+It focuses on two main application security areas such as authentication and authorization mechanisms.
+
+It also provides many other features such as restricting URL access, session management, remember me, method level access, page level access, etc.
+
+Apache Shiro
+
+Apache Shiro is one more easy-to-use flexible and powerful Java security framework to perform authentication, authorization, cryptography, and session management.
+
+It can be used to secure different kinds of applications such as standalone applications, web, mobile, and enterprise applications.
+
+OACC (Object Access Control)
+
+OACC is an advanced Application Security Framework for Java™ applications; that provides authentication and authorization services.
+
+OACC runs on Java™ SE 7 (Java™ version 1.7.0), or higher.
+
+OACC is open source software released under the commercial-friendly Apache License, Version 2.0 with a new API method to support token-based authentication	
+
+Spring Security provides powerful end to end security services for the Java EE based web/enterprise applications. It is one of the de-facto standards for securing Spring based applications.
+
+Spring Security also helps us to overcome authentication and authorization related OWASP Top 10 vulnerabilities and SANS Top 25 Most Dangerous Programming Errors.
+
+Note:
+
+Securing application with Spring Security does not mean that your application is completely secure, there are many more security measures required to ensure your application is more secure such as:
+
+understanding the security requirements of your application
+
+creating secure architecture and design
+
+secure coding best practices
+
+security testing
+
+secure measures during deployment etc.
+
+
+What is Spring Security ?
+
+It is an open-source framework that is used for securing their applications in a platform-independent way.
+
+Security is applied in a simpler way using declarative programming approach with annotation-based configuration.
+
+Spring Security provides following core security services to your applications:
+
+Authentication 
+
+Basic authentication with default login/Http basic form
+
+Authentication against database 
+
+Secure Password Storage
+
+Authentication against LDAP (Lightweight Directory Access Protocol)
+
+Authorization
+
+Role-based access
+
+Restricting URL access
+
+Method level security
+
+Page-level security
+
+Session management
+
+Https channel security
+
+Remember me service
+
+Spring Security also provides many sub-projects under its umbrella to support popular security standards/protocols such as OAuth, SAML, Kerberos.
+
+
+Spring Security-> Java Authentication and authorization Services
+
+
+
+Authentication : read username password and authenticate/validate them
+Authorization  : role management
+
+ex Banking app
+
+Roles:
+manager -Approve Loans , Open FD/RD, 
+Clerk   -print statements, send email notification to customers
+Customer- view balance open new account, money transfer
+
+
+
+* Filter(I) [javax.servlet]
+ this is to execute preprocessing logic over request object (before going to the servlet)
+  and also for post processing logic over response object  (after coming from servlet)
+
+
+* DelegatingFilterProxy(c) [org.springframework.web.filter]
+ This is a predefined filter given by spring security to process reuqests using JAAS
+
+
+Authorization Types
+----------------------
+
+1. permitAll(): No Sercutiry req to access the current path or page 
+   ex. /login , /home ,/contactUs
+
+2. authenticated(): Login Required (un/pwd) + no role required
+
+3. hasAuthority():  Login Required (un/pwd) + matching role required
+
+  /approveLoan + Manager
+  /blockUser + admin
+
+HttspStatus
+--------
+1.  401-Unauthorized
+    when you sumbit invalid username and password while accessing a resource
+
+2.  403-Forbidden
+    when the authenticated user does not have a mathcing role to access the requested resources
+
+Form,Token(JWT,OAuth)
+--------------------------------
+
+
+2 types of authentications
+
+1. Inmemory authentication - usually used for testing purpose
+2. jdbc authentication usually used in real time environment.
+
+
+
+/home                     permitAll
+/welcome                  authenticated + No role
+/admin                    authenticated + admin
+/emp                      authenticated + employee
+/cust                     authenticated + customer
+
+2. Spring Security + Jdbc Authentication + custom login form
+
+
+---------------------------------------------------------------------------------
+
+JWT
+---
+
+session management
+
+remember me service
+
+Json Web Token
+--------------
+
+
+
+
+
+
+Client Server Authentication
+------------------------------
+
+a. Stateful Authentication
+   It Creates HttpSession at server side when client is successfully authenticated , one session id is provided and is sent to client as a response as a cookie
+  using this cookie client can make request to server till logout when session is invalidated
+
+b. StateLess Authentication
+  It will never create any memory at server side, for a client Authnetication one unique token is generated (ex: JWT)
+  and is given as a response
+
+  we can use this token to send request to the server/servers again till the token is invalidated(expired) 
+  and the servers will provide serviced as long as the token is authentic and valid.
+ 
+
+
+
+Junit + Mockito(https://site.mockito.org/)
+--------------------------------------------
+
+
+will see how to do testing of service layer classes using JUnit and Spring Boot.
+
+In Spring Boot applications for testing, spring-boot-starter-test starter has to be added in pom.xml as follows:
+
+            <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+              <scope>test</scope>
+            </dependency>
+This starter provides most commonly used libraries for writing tests such as JUnit 5, Mockito, Hamcrest, AssertJ, Spring Test and Spring Boot Test etc.
+
+@SpringBootTest - This annotation loads ApplicationContext using SpringApplication so that all the Spring Boot features will be available to the tests.
+@RunWith(SpringRunner.class) – This annotations tells JUnit to invoke SpringRunner class to run the tests instead of the runner built into it.
+ If you are using JUnit 5, there is no need to use this annotation as
+@SpringBootTest is already annotated with its equivalent annotation.
+
+Mockito provides following annotation for creating and using mock objects:
+
+1. @Mock - This annotation creates the mock object of annotated field. For example, CustomerServiceImpl class has a dependency on CustomerDAO, so CustomerDAO needs to be mocked i.e. a dummy object of CustomerDAO is required. This can be done using @Mock annotation as follows:
+
+@Mock 
+private CustomerDAO customerDao;
+2. @InjectMocks - This annotation creates object of annotated field and inject mocked dependencies. For example, the object of CustomerServiceImpl class needs the mocked object of CustomeDAO class, so this can be done using @InjectMocks annotation as follows:
+
+@InjectMocks 
+private CustomerService customerService = new CustomerServiceImpl();
+
+
+
+
+Configuring Behaviour of Mock Object
+To add behavior mock object Mockito provides methods. One of such method is when(). It is a static method defined in org.mockito.Mockito class. It specifies the value returned when a method of mock object is called. For example, the following code snippet tells Mockito that when getCustomerByCustomerId() method of the mock CustomerDAO is called with 1002 as parameter then it should return null:
+
+when(customerDao.getCustomerByCustomerId(1002).thenReturn(null);
+But sometimes you need to define behavior for range of values or beforehand unknown values. For this, you can configure mocked methods using matcher methods as follows:
+
+when(customerDao.getCustomerByCustomerId(anyInt()).thenReturn(null);
+In above code snippet, anyInt() is a matcher method which returns any Integer value. So whenever any integer value is passed to getCustomerByCustomerId() method of the mock CustomerDAO it will return null value. Some other matcher methods are as follows:
+
+anyBoolean() -It  returns any boolean or Boolean value.
+anyInt() -  It returns any integer or Integer value.
+anyFloat() - It returns any float or Float value.
+anyDouble() - It returns any double or Double value.
+anyLong() - It returns any long or Long value.
+any() - It returns any Object.
+You must take care of following points while using Mockito:
+
+The private and static methods cannot be mocked.(we can use PowerMock , https://powermock.github.io/)
+Dont use matcher methods as values returned by a function. For return value use exact values. 
+If a method has multiple arguments then you must provide all arguments either by matchers or by exact values.
+The matcher methods cannot be used outside of verification or 
+
+Verifying number of time a method executed , useful incase of testing void methods
+
+  verify(employeeDao).addEmployee()
+
+
+ //following two verifications work exactly the same - times(1) is used by default
+ verify(mockedList).add("once");
+ verify(mockedList, times(1)).add("once");
+
+ //exact number of invocations verification
+ verify(mockedList, times(2)).add("twice");
+ verify(mockedList, times(3)).add("three times");
+
+ //verification using never(). never() is an alias to times(0)
+ verify(mockedList, never()).add("never happened");
+
+ //verification using atLeast()/atMost()
+ verify(mockedList, atMostOnce()).add("once");
+ verify(mockedList, atLeastOnce()).add("three times");
+ verify(mockedList, atLeast(2)).add("three times");
+ verify(mockedList, atMost(5)).add("three times");
+-------------------------------------------------------------------------------------------------------------
+
+Testing Dao Layer
+//@DataJpaTest
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class MockitoTestDataJpaApplicationTests {
+
+	@Autowired
+	private EmployeeRepository repo;
+	
+	@Order(1)
+	@Test
+	@Rollback(value=false)
+	void saveEmployeeTest() 
+	{
+		Employee e = new Employee(2,"abc","xyz");
+		repo.save(e);
+		
+		Assertions.assertThat(e.getEmpId()).isGreaterThan(0);
+		
+	}
+	@Order(2)
+	@Test
+	@Rollback(value=false)
+	void getEmployeebyId() 
+	{
+	
+		 Optional<Employee> e=repo.findById(1);
+		
+		Assertions.assertThat(e.get().getEmpId()).isEqualTo(1);
+		
+	}
+	
+
+}
+
+
+
+
+---------------------------------------------
+
+stand alone project
+---------------------
+
+
+    gmail
+   -------
+
+inbox sent Drafts
+----- ---  ------
+Inbox.java
+
+
+
+
+gmail.inbox.Inbox.
+
+
+
+
+Hcl.com
+
+hcl.in
+
+hcl.org
+
+
+
+Once you have deployed Spring Boot application into production environment, 
+you always want to monitor the application. 
+This is beacause you want to ensure that the application must be always up and running and also in case of any issues you want to fix it quickly. 
+Therefore, an application monitoring tool is required so that you can analyse the health of your application.
+
+Spring Boot has an in-built mechanism for monitoring application called as Actuator.
+ It is a sub-project of Spring Boot.
+ It offers several production grade features to monitor the application. 
+Once you enable actuator in your Spring Boot application, a set of endpoints are exposed using which you can monitor and manage your application. 
+ You can also integrate these endpoints with other application monitoring tools such Prometheus, Graphite etc.
+
+Now let us see how you can enable Actuator in your Spring Boot application.
+
+Enabling Spring Boot Actuator
+Actuators can be easily enabled in your application by adding following spring-boot-actuator dependency in pom.xml file:
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-actuator</artifactId>  
+</dependency>
+
+Actuator Endpoints
+Once Actuator is enabled in your application, using actuator endpoints you can monitor and manage your application. 
+These endpoints are exposed over HTTP in Spring MVC application using the 'id' of endpoints as the URL path along with /acuator as prefix.
+ The following table shows some important actuator endpoints :
+
+id			Description
+/beans		Provides list of all Spring beans available in the application
+/configprops	Provides a collated list of all @ConfigurationProperties
+/env		Exposes all the properties from Spring's ConfigurableEnvironment
+/info		Displays arbitrary application information
+/metrics	Displays metric information for the current application
+/mappings	Displays a collated list of all request mapping paths
+/shutdown	Allows the application to shutdown
+/trace		Displays trace information, by default latest 100 HTTP requests
+/health		Provides applications health information
+ 
+
+These endpoints contain sestive information so all of them are not exposed by default. 
+Only /health and /info endpoints are exposed by default.
+ You can enable all other endpoints by adding following property in the application.properties file:
+
+management.endpoints.web.exposure.include=*
+
+You also restrict the exposure of specific endpoint. 
+For example, to expose all endpoints except env add the the following property in application.properties file:
+
+management.endpoints.web.exposure.include=*
+management.endpoints.web.exposure.exclude=env,health,metrics
+
+Any specific endpoint can be exposed as shown below:
+
+management.endpoints.web.exposure.include=env,beans
+If your application is running on port number 8756, you can get list of all the actuator endpoints 
+using URL http://localhost:8765/actuator. It will give you the following response:
+
+{
+    "_links": {
+        "self": {
+            "href": "http://localhost:8765/actuator",
+            "templated": false
+        },
+        "health": {
+            "href": "http://localhost:8765/actuator/health",
+            "templated": false
+        },
+        "health-path": {
+            "href": "http://localhost:8765/actuator/health/{*path}",
+            "templated": true
+        },
+        "info": {
+            "href": "http://localhost:8765/actuator/info",
+            "templated": false
+        }
+    }
+}
+If all the endpoints are exposed, then you will get following response:
+{
+    "_links": {
+        "self": {
+            "href": "http://localhost:8765/actuator",
+            "templated": false
+        },
+        "beans": {
+            "href": "http://localhost:8765/actuator/beans",
+            "templated": false
+        },
+        "caches": {
+            "href": "http://localhost:8765/actuator/caches",
+            "templated": false
+        },
+        "caches-cache": {
+            "href": "http://localhost:8765/actuator/caches/{cache}",
+            "templated": true
+        },
+        "health": {
+            "href": "http://localhost:8765/actuator/health",
+            "templated": false
+        },
+        "health-path": {
+            "href": "http://localhost:8765/actuator/health/{*path}",
+            "templated": true
+        },
+        "info": {
+            "href": "http://localhost:8765/actuator/info",
+            "templated": false
+        },
+        "conditions": {
+            "href": "http://localhost:8765/actuator/conditions",
+            "templated": false
+        },
+        "configprops": {
+            "href": "http://localhost:8765/actuator/configprops",
+            "templated": false
+        },
+        "env": {
+            "href": "http://localhost:8765/actuator/env",
+            "templated": false
+        },
+        "env-toMatch": {
+            "href": "http://localhost:8765/actuator/env/{toMatch}",
+            "templated": true
+        },
+        "loggers": {
+            "href": "http://localhost:8765/actuator/loggers",
+            "templated": false
+        },
+        "loggers-name": {
+            "href": "http://localhost:8765/actuator/loggers/{name}",
+            "templated": true
+        },
+        "heapdump": {
+            "href": "http://localhost:8765/actuator/heapdump",
+            "templated": false
+        },
+        "threaddump": {
+            "href": "http://localhost:8765/actuator/threaddump",
+            "templated": false
+        },
+        "metrics": {
+            "href": "http://localhost:8765/actuator/metrics",
+            "templated": false
+        },
+        "metrics-requiredMetricName": {
+            "href": "http://localhost:8765/actuator/metrics/{requiredMetricName}",
+            "templated": true
+        },
+        "scheduledtasks": {
+            "href": "http://localhost:8765/actuator/scheduledtasks",
+            "templated": false
+        },
+        "mappings": {
+            "href": "http://localhost:8765/actuator/mappings",
+            "templated": false
+        }
+    }
+}
+
+
+
+
+Monitoring application through Actuator Endpoints
+ 
+/health endpoint
+This endpoint gives you the information about health of application. You can acces this endpoint using the URL http://localhost:8765/actuator/health. It will give you following response:
+
+{
+    "status": "UP"
+}
+The status will be UP if application is running and healthy. If application has some issues such as database is down etc. then you will get following response:
+
+{
+    "status": "DOWN"
+}
+It tells only whether the status of application is UP or DOWN.  If you want to get complete details about health of application then add the following property in the application.properties file:
+
+management.endpoint.health.show-details=always
+
+After this you will get the more detailed response as follows: 
+
+{
+    "status": "UP",
+    "components": {
+        "db": {
+            "status": "UP",
+            "details": {
+                "database": "MySQL",
+                "validationQuery": "isValid()"
+            }
+        },
+        "diskSpace": {
+            "status": "UP",
+            "details": {
+                "total": 262143995904,
+                "free": 156223340544,
+                "threshold": 10485760,
+                "exists": true
+            }
+        },
+        "ping": {
+            "status": "UP"
+        }
+    }
+}
+/metrics endpoint
+This endpoint displays various metrics that can be checked for your application. You can acces this endpoint using the URL http://localhost:8765/actuator/metrics. It will give you following response :
+{
+    "names": [
+        "hikaricp.connections",
+        "hikaricp.connections.acquire",
+        "hikaricp.connections.active",
+        "hikaricp.connections.creation",
+        "hikaricp.connections.idle",
+        "hikaricp.connections.max",
+        "hikaricp.connections.min",
+        "hikaricp.connections.pending",
+        "hikaricp.connections.timeout",
+        "hikaricp.connections.usage",
+        "http.server.requests",
+        "jdbc.connections.active",
+        "jdbc.connections.idle",
+        "jdbc.connections.max",
+        "jdbc.connections.min",
+        "jvm.buffer.count",
+        "jvm.buffer.memory.used",
+        "jvm.buffer.total.capacity",
+        "jvm.classes.loaded",
+        "jvm.classes.unloaded",
+        "jvm.gc.live.data.size",
+        "jvm.gc.max.data.size",
+        "jvm.gc.memory.allocated",
+        "jvm.gc.memory.promoted",
+        "jvm.gc.pause",
+        "jvm.memory.committed",
+        "jvm.memory.max",
+        "jvm.memory.used",
+        "jvm.threads.daemon",
+        "jvm.threads.live",
+        "jvm.threads.peak",
+        "jvm.threads.states",
+        "log4j2.events",
+        "process.cpu.usage",
+        "process.start.time",
+        "process.uptime",
+        "system.cpu.count",
+        "system.cpu.usage",
+        "tomcat.sessions.active.current",
+        "tomcat.sessions.active.max",
+        "tomcat.sessions.alive.max",
+        "tomcat.sessions.created",
+        "tomcat.sessions.expired",
+        "tomcat.sessions.rejected"
+    ]
+}
+The above response has the name of individual metric. To get more information about these metrics you need to append the metric name to the URL. For example if you want to know more about jvm.memory.used metric then the URL will be http://localhost:8765/actuator/metrics/jvm.memory.used. This URL will give the following response:
+
+{
+    "name": "jvm.memory.used",
+    "description": "The amount of used memory",
+    "baseUnit": "bytes",
+    "measurements": [
+        {
+            "statistic": "VALUE",
+            "value": 118873840
+        }
+    ],
+    "availableTags": [
+        {
+            "tag": "area",
+            "values": [
+                "heap",
+                "nonheap"
+            ]
+        },
+        {
+            "tag": "id",
+            "values": [
+                "tenured-SOA",
+                "class storage",
+                "nursery-survivor",
+                "miscellaneous non-heap storage",
+                "tenured-LOA",
+                "JIT code cache",
+                "JIT data cache",
+                "nursery-allocate"
+            ]
+        }
+    ]
+}
+According to above response, the application is using 118873840 bytes or 118.87384MB of memory. 
+
+
+
+​In Spring Boot you can easily customize existing Actuator endpoints and can also create new endpoints.
+To create a new endpoint you have to create a class and annotate it with
+ @Component and @Endpoint annotation.
+ The @Endpoint annotation has a parameter id which determines the URL path of endpoint. This class contains the methods which returns the response of the endpoint. For example, consider the following endpoint bean class:
+
+@Component
+@Endpoint(id = "customers")
+public class MyCustomerEndpoint {
+	
+	
+	@ReadOperation
+	public List<CustomerDTO> getAllCustomers(){
+		// rest of the code
+	}
+	
+	@WriteOperation
+	public String updateCustomer(Integer customerId, String emailId) throws InfyBankException {
+		// rest of the code	
+    }
+	
+	@DeleteOperation
+	public String deleteCustomer(@Selector Integer customerId) {
+		// rest of the code	
+    }
+}
+In above class,
+
+The value of id parameter of @Endpoint is customers. So this endpoint is accessible by URL /actuator/customers.
+a method defined with @ReadOperation which will be mapped to HTTP GET method and automatically be exposed over HTTP.
+a method defined with @WriteOperation which will be mapped to HTTP POST method and automatically be exposed over HTTP. The methods that are annotated with @WriteOperation can take parameters in JSON format alone.
+a method defined with @DeleteOperation which will be mapped to HTTP DELETE method and automatically be exposed over HTTP.
+technology-specific endpoints defined with @WebEndpoint/@JmxEndpoint. For ex, @WebEndpoint is exposed over HTTP only.
+ 
+
+
+
+To create a custom endpoint follow the below steps:
+
+Step 6: Create MyCustomerEndpoint class in com.infy.endpoint package as shown below:
+
+@Component
+@Endpoint(id = "customers")
+public class MyCustomerEndpoint {
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private Environment environment;
+	
+	@ReadOperation
+	public List<CustomerDTO> getAllCustomers(){
+		List<Customer> customers = (List<Customer>) customerRepository.findAll();
+		List<CustomerDTO> customerDTOs = new ArrayList<>();
+		customers.forEach((customer) -> {
+			CustomerDTO customerDTO = new CustomerDTO();
+			customerDTO.setCustomerId(customer.getCustomerId());
+			customerDTO.setDateOfBirth(customer.getDateOfBirth());
+			customerDTO.setEmailId(customer.getEmailId());
+			customerDTO.setName(customer.getName());
+			
+			customerDTOs.add(customerDTO);
+		});
+		return customerDTOs;
+	}
+	
+	@WriteOperation
+	public String updateCustomer(Integer customerId, String emailId) throws InfyBankException {
+		Optional<Customer> optional = customerRepository.findById(customerId);
+		Customer customer = optional.orElseThrow(() -> new InfyBankException("Service.CUSTOMER_NOT_FOUND"));
+		customer.setEmailId(emailId);
+		
+		return environment.getProperty("API.UPDATE_SUCCESS");
+	}
+	
+	@DeleteOperation
+	public String deleteCustomer(@Selector Integer customerId) {
+		customerRepository.deleteById(customerId);
+		return environment.getProperty("API.DELETE_SUCCESS");
+	}
+}
+ Step 7: Restart the application and test the below requests on Postman.
+
+GET request:
+URL - http://localhost:8765/actuator/customers
+
+POST request:
+URL - http://localhost:8765/actuator/customers
+
+DELETE request:
+URL - http://localhost:8765/actuator/customers/1
+
+
+
+
+
+
+
+
+
+
+
+
+
+SPRING CLOUD
+-----------------
+
+Spring Cloud provides tools for developers to quickly build some of the common patterns in distributed systems
+ (e.g. configuration management, service discovery, circuit breakers, intelligent routing,
+ micro-proxy, control bus, one-time tokens, global locks, leadership election,
+ distributed sessions, cluster state).
+ Coordination of distributed systems leads to boiler plate patterns,
+ and using Spring Cloud developers can quickly stand up services and 
+applications that implement those patterns. They will work well in any
+ distributed environment, including the developer’s own laptop, bare metal
+ data centres, and managed platforms such as Cloud Foundry.
+
+Features
+Spring Cloud focuses on providing good out of box experience for typical use cases and extensibility mechanism to cover others.
+
+Distributed/versioned configuration
+
+Service registration and discovery
+
+Routing
+
+Service-to-service calls
+
+Load balancing
+
+Circuit Breakers
+
+Global locks
+
+Leadership election and cluster state
+
+Distributed messaging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
